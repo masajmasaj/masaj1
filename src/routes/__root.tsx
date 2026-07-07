@@ -86,6 +86,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#2a3328" },
+      { property: "og:title", content: "Lythe — Premium Mobile Massage & Wellness in London" },
+      { name: "twitter:title", content: "Lythe — Premium Mobile Massage & Wellness in London" },
+      { property: "og:description", content: "Elite mobile massage therapists delivered to your home, hotel or office across London. Vetted, insured, clinic-grade wellness on demand." },
+      { name: "twitter:description", content: "Elite mobile massage therapists delivered to your home, hotel or office across London. Vetted, insured, clinic-grade wellness on demand." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9b98740d-7891-4ce9-9ae0-e95ef615d0d2/id-preview-995ba21e--51eb6c2d-8ea5-492e-a282-ce5a098622fb.lovable.app-1783467072783.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9b98740d-7891-4ce9-9ae0-e95ef615d0d2/id-preview-995ba21e--51eb6c2d-8ea5-492e-a282-ce5a098622fb.lovable.app-1783467072783.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
