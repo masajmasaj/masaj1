@@ -48,7 +48,7 @@ function LocationDetail() {
     <SiteLayout>
       <Section eyebrow="London Coverage" title={page.title} intro={page.intro}>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-14">
-          {page.areas.map((area) => (
+          {page.areas.map((area: string) => (
             <div
               key={area}
               className="border border-stone-300 rounded-xl px-4 py-5 text-center bg-stone-50/70"
