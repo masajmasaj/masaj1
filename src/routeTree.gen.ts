@@ -11,11 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TreatmentsRouteImport } from './routes/treatments'
 import { Route as TherapistsRouteImport } from './routes/therapists'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as MembershipRouteImport } from './routes/membership'
+import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as GiftCardsRouteImport } from './routes/gift-cards'
 import { Route as CorporateRouteImport } from './routes/corporate'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookingRouteImport } from './routes/booking'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 
 const TreatmentsRoute = TreatmentsRouteImport.update({
   id: '/treatments',
@@ -27,9 +37,24 @@ const TherapistsRoute = TherapistsRouteImport.update({
   path: '/therapists',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MembershipRoute = MembershipRouteImport.update({
@@ -37,9 +62,34 @@ const MembershipRoute = MembershipRouteImport.update({
   path: '/membership',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KnowledgeRoute = KnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftCardsRoute = GiftCardsRouteImport.update({
+  id: '/gift-cards',
+  path: '/gift-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CorporateRoute = CorporateRouteImport.update({
   id: '/corporate',
   path: '/corporate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingRoute = BookingRouteImport.update({
@@ -47,76 +97,155 @@ const BookingRoute = BookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => LocationsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/gift-cards': typeof GiftCardsRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
+  '/privacy': typeof PrivacyRoute
+  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/therapists': typeof TherapistsRoute
   '/treatments': typeof TreatmentsRoute
+  '/locations/$slug': typeof LocationsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/gift-cards': typeof GiftCardsRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
+  '/privacy': typeof PrivacyRoute
+  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/therapists': typeof TherapistsRoute
   '/treatments': typeof TreatmentsRoute
+  '/locations/$slug': typeof LocationsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/gift-cards': typeof GiftCardsRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
+  '/privacy': typeof PrivacyRoute
+  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/therapists': typeof TherapistsRoute
   '/treatments': typeof TreatmentsRoute
+  '/locations/$slug': typeof LocationsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/booking'
+    | '/contact'
+    | '/cookies'
     | '/corporate'
+    | '/gift-cards'
+    | '/knowledge'
+    | '/locations'
     | '/membership'
+    | '/privacy'
+    | '/shop'
     | '/sitemap.xml'
+    | '/terms'
     | '/therapists'
     | '/treatments'
+    | '/locations/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/booking'
+    | '/contact'
+    | '/cookies'
     | '/corporate'
+    | '/gift-cards'
+    | '/knowledge'
+    | '/locations'
     | '/membership'
+    | '/privacy'
+    | '/shop'
     | '/sitemap.xml'
+    | '/terms'
     | '/therapists'
     | '/treatments'
+    | '/locations/$slug'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/booking'
+    | '/contact'
+    | '/cookies'
     | '/corporate'
+    | '/gift-cards'
+    | '/knowledge'
+    | '/locations'
     | '/membership'
+    | '/privacy'
+    | '/shop'
     | '/sitemap.xml'
+    | '/terms'
     | '/therapists'
     | '/treatments'
+    | '/locations/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   BookingRoute: typeof BookingRoute
+  ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   CorporateRoute: typeof CorporateRoute
+  GiftCardsRoute: typeof GiftCardsRoute
+  KnowledgeRoute: typeof KnowledgeRoute
+  LocationsRoute: typeof LocationsRouteWithChildren
   MembershipRoute: typeof MembershipRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
   TherapistsRoute: typeof TherapistsRoute
   TreatmentsRoute: typeof TreatmentsRoute
 }
@@ -137,11 +266,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TherapistsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/membership': {
@@ -151,11 +301,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MembershipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/knowledge': {
+      id: '/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof KnowledgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gift-cards': {
+      id: '/gift-cards'
+      path: '/gift-cards'
+      fullPath: '/gift-cards'
+      preLoaderRoute: typeof GiftCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/corporate': {
       id: '/corporate'
       path: '/corporate'
       fullPath: '/corporate'
       preLoaderRoute: typeof CorporateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking': {
@@ -165,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -172,28 +364,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations/$slug': {
+      id: '/locations/$slug'
+      path: '/$slug'
+      fullPath: '/locations/$slug'
+      preLoaderRoute: typeof LocationsSlugRouteImport
+      parentRoute: typeof LocationsRoute
+    }
   }
 }
 
+interface LocationsRouteChildren {
+  LocationsSlugRoute: typeof LocationsSlugRoute
+}
+
+const LocationsRouteChildren: LocationsRouteChildren = {
+  LocationsSlugRoute: LocationsSlugRoute,
+}
+
+const LocationsRouteWithChildren = LocationsRoute._addFileChildren(
+  LocationsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   BookingRoute: BookingRoute,
+  ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   CorporateRoute: CorporateRoute,
+  GiftCardsRoute: GiftCardsRoute,
+  KnowledgeRoute: KnowledgeRoute,
+  LocationsRoute: LocationsRouteWithChildren,
   MembershipRoute: MembershipRoute,
+  PrivacyRoute: PrivacyRoute,
+  ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
   TherapistsRoute: TherapistsRoute,
   TreatmentsRoute: TreatmentsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
