@@ -6,6 +6,7 @@ import { TreatmentCard } from "@/components/site/TreatmentCard";
 import { ServiceModelCard } from "@/components/site/ServiceModelCard";
 import { SafetyNotice } from "@/components/site/SafetyNotice";
 import { Section } from "@/components/site/Section";
+import { AnimatedCounter } from "@/components/site/AnimatedCounter";
 import { TREATMENTS } from "@/lib/treatments";
 import { SERVICE_MODELS } from "@/lib/service-models";
 import { BRAND } from "@/lib/site-config";
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "mobile massage London, home massage London, hotel massage London, office massage London, sports massage London, luxury massage London, massage therapist London, corporate wellness London",
+          "massage London, home massage London, hotel massage London, office massage London, corporate massage London, sports massage London, luxury massage London, massage therapist London, wellness London",
       },
       { property: "og:title", content: HOMEPAGE_TITLE },
       { property: "og:description", content: BRAND.description },
@@ -66,35 +67,112 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+const STATS = [
+  { value: 10000, suffix: "+", label: "Treatments Delivered" },
+  { value: 500, suffix: "+", label: "Happy Clients" },
+  { value: 0, label: "Qualified Therapists", customValue: "Professional" },
+  { value: 7, label: "Days Availability", customValue: "7 Days" },
+];
+
+const SERVICES_GRID = [
+  { name: "Home Massage", desc: "Your private treatment, delivered to your door.", to: "/booking" },
+  { name: "Hotel Massage", desc: "Discreet in-suite wellness across London hotels.", to: "/booking" },
+  { name: "Office Massage", desc: "Chair and table treatments at your workplace.", to: "/booking" },
+  { name: "Corporate Wellness", desc: "Programmes and wellness days for teams.", to: "/corporate" },
+  { name: "Sports Recovery", desc: "Pre and post-event work for active bodies.", to: "/treatments" },
+  { name: "Deep Tissue", desc: "Focused release for chronic tension.", to: "/treatments" },
+  { name: "Swedish Massage", desc: "Classic long strokes for complete relaxation.", to: "/treatments" },
+  { name: "Pregnancy Massage", desc: "Specialist side-lying prenatal care.", to: "/treatments" },
+  { name: "Senior Wellness", desc: "Gentle therapy adapted for older adults.", to: "/treatments" },
+  { name: "Luxury Spa Experience", desc: "Aromatherapy, hot stone and full rituals.", to: "/treatments" },
+  { name: "Couples Massage", desc: "Two therapists, one shared moment.", to: "/treatments" },
+  { name: "Event Massage", desc: "On-site wellness for weddings and pop-ups.", to: "/corporate" },
+];
+
 const AUDIENCES = [
-  "Busy professionals",
-  "Athletes",
-  "Older adults",
-  "Hotel guests",
-  "Office workers",
-  "Pregnant women",
-  "People with muscle tension",
-  "Corporate teams",
+  { h: "Busy Professionals", p: "Recovery between the meetings." },
+  { h: "Athletes", p: "Performance and long-term mobility." },
+  { h: "Corporate Teams", p: "Wellness days and ongoing programmes." },
+  { h: "Hotel Guests", p: "In-suite calm for London visitors." },
+  { h: "Older Adults", p: "Gentle, respectful home visits." },
+  { h: "Pregnant Women", p: "Specialist prenatal and postnatal care." },
+  { h: "Tourists", p: "A restorative pause between plans." },
+  { h: "Remote Workers", p: "Undo the desk. Reset the week." },
 ];
 
 const WHY_US = [
-  { h: "Professional therapists", p: "Qualified UK practitioners with clinical and holistic training." },
-  { h: "Carefully selected", p: "A rigorous five-stage vetting process. Only the top few percent join us." },
-  { h: "Luxury mobile experience", p: "Hotel-grade linen, warmed oils and a fully prepared treatment space." },
-  { h: "Clean & hygienic", p: "Sanitised equipment and fresh linen for every single visit." },
-  { h: "Transparent pricing", p: "Flat, honest treatment prices — no travel fees within our core zones." },
-  { h: "Same-day ready", p: "Structured for future same-day booking as our therapist network grows." },
-  { h: "Comfort & safety", p: "A safe, respectful and considered experience for every client." },
+  { h: "Qualified Therapists", p: "Level 3 and 4 accredited UK practitioners." },
+  { h: "Carefully Vetted", p: "A five-stage vetting process. Only the top few percent join us." },
+  { h: "Luxury Experience", p: "Hotel-grade linen, warmed oils and considered detail." },
+  { h: "Hygiene Standards", p: "Sanitised equipment and fresh linen every visit." },
+  { h: "Professional Equipment", p: "Purpose-built couches, bolsters and heated pads." },
+  { h: "Home Comfort", p: "A calm treatment space set up around you." },
+  { h: "Secure Payments", p: "Encrypted card payments coming with our booking launch." },
+  { h: "Transparent Pricing", p: "Flat, honest treatment prices — no hidden fees." },
 ];
 
-const KNOWLEDGE_TOPICS = [
-  { h: "Massage Guides", p: "Choosing the right treatment for your body today." },
-  { h: "Recovery Tips", p: "Between-session care for athletes and desk-bound bodies." },
-  { h: "Stress Relief", p: "Small daily rituals that calm the nervous system." },
-  { h: "Sports Massage", p: "Training loads, mobility and long-term performance." },
-  { h: "Senior Wellness", p: "Gentle care for changing bodies and slower recovery." },
-  { h: "Pregnancy & Postnatal", p: "Safe, considered massage through every stage." },
-  { h: "Aftercare", p: "What to do — and avoid — in the hours after your treatment." },
+const KNOWLEDGE_ARTICLES = [
+  { h: "Benefits of Deep Tissue Massage", p: "Why sustained pressure unlocks long-held tension.", tag: "Guides" },
+  { h: "How Sports Massage Helps Recovery", p: "Training loads, mobility and long-term performance.", tag: "Performance" },
+  { h: "Best Massage After Running", p: "Choosing the right treatment for tired legs.", tag: "Recovery" },
+  { h: "Relaxation Techniques", p: "Small daily rituals that calm the nervous system.", tag: "Wellbeing" },
+  { h: "Massage During Pregnancy", p: "Safe, considered treatment through every trimester.", tag: "Prenatal" },
+  { h: "Senior Wellness Tips", p: "Movement, comfort and rest in later years.", tag: "Senior Care" },
+];
+
+const SHOP_PRODUCTS = [
+  "Massage Oils",
+  "Massage Guns",
+  "Recovery Tools",
+  "Foam Rollers",
+  "Essential Oils",
+  "Spa Accessories",
+  "Gift Boxes",
+];
+
+const MEMBERSHIPS = [
+  {
+    tier: "Bronze",
+    tagline: "An easy way to begin.",
+    perks: ["One treatment per month", "Priority weekend booking", "5% wellness shop credit"],
+  },
+  {
+    tier: "Silver",
+    tagline: "For the regular ritual.",
+    perks: ["Two treatments per month", "Guaranteed therapist match", "10% wellness shop credit"],
+  },
+  {
+    tier: "Gold",
+    tagline: "A quieter standard of care.",
+    perks: ["Four treatments per month", "Same-day priority booking", "Complimentary aromatherapy upgrade"],
+    featured: true,
+  },
+  {
+    tier: "VIP",
+    tagline: "A private wellness concierge.",
+    perks: ["Unlimited treatments", "Dedicated therapist team", "Bespoke annual wellness plan"],
+  },
+];
+
+const GIFT_OCCASIONS = [
+  { h: "Birthdays", p: "A restorative gift, quietly given." },
+  { h: "Christmas", p: "The season's most considered present." },
+  { h: "Anniversaries", p: "Time shared, side by side." },
+  { h: "Corporate Gifts", p: "Recognition your team will remember." },
+];
+
+const CORPORATE_HIGHLIGHTS = [
+  { h: "Team Wellness Days", p: "On-site chair and table massage to reset your team." },
+  { h: "Recurring Programmes", p: "Weekly or monthly on-site care for hybrid workplaces." },
+  { h: "Event Activations", p: "Wellness lounges for conferences, launches and away-days." },
+  { h: "Executive Care", p: "Private, in-office treatments for leadership teams." },
+];
+
+const TESTIMONIALS = [
+  { q: "A level of professionalism rarely seen outside Harley Street. My flat became a private clinic.", a: "Elena R.", m: "Mayfair member" },
+  { q: "Booked in the morning, restored by lunchtime. The consistency across therapists is remarkable.", a: "James H.", m: "Corporate wellness partner" },
+  { q: "The prenatal care I received was intuitive, safe and deeply calming. It changed my third trimester.", a: "Sofia M.", m: "Chelsea" },
+  { q: "Our team wellness days have transformed how the office feels on a Monday.", a: "Priya K.", m: "Head of People, Canary Wharf" },
 ];
 
 function HomePage() {
@@ -103,10 +181,10 @@ function HomePage() {
 
   return (
     <SiteLayout>
-      {/* HERO */}
+      {/* 1. HERO */}
       <section className="relative bg-stone-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 py-16 md:py-28 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="max-w-xl">
+          <div className="max-w-xl animate-fade-in">
             <p className="eyebrow text-gold mb-6 flex items-center gap-2">
               <span className="size-1.5 rounded-full bg-gold" />
               Home · Hotel · Office · Corporate
@@ -115,25 +193,25 @@ function HomePage() {
               Luxury Mobile Massage &amp; Wellness Across London.
             </h1>
             <p className="text-base md:text-lg text-stone-700 text-pretty max-w-[48ch] leading-relaxed mb-8">
-              Qualified therapists brought to your home, hotel, office or event — with the calm,
-              hospitality and care of a private spa.
+              Professional massage therapists delivering exceptional wellness experiences to your
+              home, hotel, office or workplace.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/booking"
                 className="bg-forest text-stone-50 px-7 py-4 rounded-full text-sm font-medium hover:brightness-110 transition"
               >
-                Book a Massage
+                Book Now
               </Link>
               <Link
                 to="/treatments"
                 className="border border-stone-300 bg-stone-50 text-stone-900 px-7 py-4 rounded-full text-sm font-medium hover:bg-stone-100 transition"
               >
-                Find Your Treatment
+                Explore Treatments
               </Link>
             </div>
           </div>
-          <div className="relative rounded-2xl overflow-hidden aspect-[4/5] lg:aspect-[3/4] ring-1 ring-black/5 shadow-soft">
+          <div className="relative rounded-2xl overflow-hidden aspect-[4/5] lg:aspect-[3/4] ring-1 ring-black/5 shadow-soft animate-scale-in">
             <img
               src={heroImg}
               alt="A warmly lit private treatment room at dusk with linen drapes and candlelight"
@@ -150,6 +228,60 @@ function HomePage() {
 
       <TrustBand />
 
+      {/* 2. TRUST STATISTICS */}
+      <Section eyebrow="By The Numbers" title="Quietly trusted across London.">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {STATS.map((s) => (
+            <div
+              key={s.label}
+              className="border border-stone-200 rounded-2xl p-8 bg-stone-50 text-center"
+            >
+              <p className="serif-display text-5xl md:text-6xl text-stone-900 mb-3">
+                {s.customValue ? (
+                  s.customValue
+                ) : (
+                  <AnimatedCounter value={s.value} suffix={s.suffix} />
+                )}
+              </p>
+              <p className="eyebrow text-stone-500">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 3. OUR SERVICES */}
+      <Section
+        tone="warm"
+        eyebrow="Our Services"
+        title="A full menu of mobile wellness."
+        intro="From bedside relaxation to corporate wellness floors — one collective, every setting."
+        action={
+          <Link
+            to="/treatments"
+            className="text-sm font-medium underline underline-offset-8 decoration-gold/60 hover:decoration-gold whitespace-nowrap"
+          >
+            View all treatments →
+          </Link>
+        }
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {SERVICES_GRID.map((s) => (
+            <Link
+              key={s.name}
+              to={s.to}
+              className="group bg-stone-50 border border-stone-200 rounded-2xl p-6 hover:border-forest/40 hover:-translate-y-0.5 transition-all flex flex-col"
+            >
+              <h3 className="font-serif text-xl text-stone-900 mb-2">{s.name}</h3>
+              <p className="text-sm text-stone-700 leading-relaxed flex-1">{s.desc}</p>
+              <span className="mt-5 text-xs font-medium tracking-[0.18em] uppercase text-forest inline-flex items-center gap-2">
+                Discover
+                <span className="size-1 rounded-full bg-gold transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
       {/* SERVICE MODELS */}
       <Section
         eyebrow="Where We Come To You"
@@ -163,39 +295,20 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* FEATURED TREATMENTS */}
-      <Section
-        tone="warm"
-        eyebrow="The Curated Menu"
-        title="Featured treatments."
-        intro="From clinical recovery to sensory relaxation — each session is bespoke to your body's specific needs."
-        action={
-          <Link
-            to="/treatments"
-            className="text-sm font-medium underline underline-offset-8 decoration-gold/60 hover:decoration-gold transition-all whitespace-nowrap"
-          >
-            View all treatments →
-          </Link>
-        }
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featured8.map((t) => (
-            <TreatmentCard key={t.slug} treatment={t} variant="compact" />
-          ))}
-        </div>
-      </Section>
-
-      {/* HOW IT WORKS */}
-      <Section eyebrow="How It Works" title="A concierge experience, in four quiet steps.">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      {/* 4. HOW BOOKING WORKS */}
+      <Section tone="warm" eyebrow="How Booking Works" title="A concierge experience, in four quiet steps.">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
           {[
-            { n: "01", h: "Choose your treatment", p: "Browse our curated menu of clinical and holistic treatments." },
-            { n: "02", h: "Select location & time", p: "Home, hotel, office or event — tell us when it suits your day." },
-            { n: "03", h: "We match your therapist", p: "A vetted specialist matched to your needs and preferences." },
-            { n: "04", h: "Relax and recover", p: "Your therapist arrives fully prepared. You simply arrive at yourself." },
+            { n: "01", h: "Choose Treatment", p: "Browse our curated clinical and holistic menu." },
+            { n: "02", h: "Select Time", p: "Pick a slot that fits your day, evening or weekend." },
+            { n: "03", h: "Choose Location", p: "Home, hotel, office or event — you decide the setting." },
+            { n: "04", h: "Relax At Home", p: "Your therapist arrives fully prepared. You simply arrive at yourself." },
           ].map((s) => (
-            <div key={s.n} className="border-t border-stone-300 pt-6">
-              <p className="serif-display text-4xl text-gold mb-6">{s.n}</p>
+            <div key={s.n} className="relative flex flex-col items-start">
+              <div className="size-20 rounded-full bg-stone-50 ring-1 ring-stone-200 flex items-center justify-center mb-6 relative z-10">
+                <span className="serif-display text-2xl text-gold">{s.n}</span>
+              </div>
               <h3 className="text-xl font-serif font-medium mb-3 text-stone-900">{s.h}</h3>
               <p className="text-sm text-stone-700 leading-relaxed">{s.p}</p>
             </div>
@@ -203,15 +316,16 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* WHO WE HELP */}
-      <Section tone="warm" eyebrow="Who We Help" title="Care for every kind of London life.">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      {/* 5. WHO WE HELP */}
+      <Section eyebrow="Who We Help" title="Care for every kind of London life.">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {AUDIENCES.map((a) => (
             <div
-              key={a}
-              className="border border-stone-300 rounded-xl px-5 py-6 text-center bg-stone-50/70"
+              key={a.h}
+              className="border border-stone-200 rounded-2xl p-6 bg-stone-50 hover:border-forest/40 transition"
             >
-              <p className="font-serif text-base md:text-lg text-stone-900">{a}</p>
+              <h4 className="font-serif text-lg text-stone-900 mb-2">{a.h}</h4>
+              <p className="text-xs text-stone-700 leading-relaxed">{a.p}</p>
             </div>
           ))}
         </div>
@@ -220,22 +334,55 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* WHY CHOOSE US */}
-      <Section eyebrow="Why Choose Lythe" title="A quieter standard of mobile wellness.">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* 6. WHY CHOOSE US */}
+      <Section tone="warm" eyebrow="Why Choose Lythe" title="A quieter standard of mobile wellness.">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {WHY_US.map((r, i) => (
-            <div key={r.h} className="flex gap-4">
-              <div className="size-10 rounded-full bg-stone-100 ring-1 ring-stone-200 flex items-center justify-center shrink-0">
+            <div key={r.h} className="bg-stone-50 border border-stone-200 rounded-2xl p-6">
+              <div className="size-10 rounded-full bg-stone-100 ring-1 ring-stone-200 flex items-center justify-center mb-5">
                 <span className="text-xs font-medium text-forest">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
-              <div className="min-w-0">
-                <h4 className="font-serif text-lg text-stone-900 mb-1.5">{r.h}</h4>
-                <p className="text-sm text-stone-700 leading-relaxed text-pretty">{r.p}</p>
-              </div>
+              <h4 className="font-serif text-lg text-stone-900 mb-2">{r.h}</h4>
+              <p className="text-sm text-stone-700 leading-relaxed">{r.p}</p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      {/* 7. TREATMENTS PREVIEW (slider) */}
+      <Section
+        eyebrow="The Curated Menu"
+        title="Featured treatments."
+        intro="From clinical recovery to sensory relaxation — each session is bespoke to your body's needs today."
+        action={
+          <Link
+            to="/treatments"
+            className="text-sm font-medium underline underline-offset-8 decoration-gold/60 hover:decoration-gold whitespace-nowrap"
+          >
+            View all treatments →
+          </Link>
+        }
+      >
+        {/* Desktop grid */}
+        <div className="hidden lg:grid grid-cols-4 gap-8">
+          {featured8.map((t) => (
+            <TreatmentCard key={t.slug} treatment={t} variant="compact" />
+          ))}
+        </div>
+        {/* Mobile horizontal slider */}
+        <div className="lg:hidden -mx-6 px-6 overflow-x-auto">
+          <div className="flex gap-5 snap-x snap-mandatory pb-4">
+            {featured8.map((t) => (
+              <div
+                key={t.slug}
+                className="snap-start shrink-0 w-[75%] sm:w-[45%]"
+              >
+                <TreatmentCard treatment={t} variant="compact" />
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -290,30 +437,45 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* FOUNDER */}
-      <Section>
-        <div className="max-w-3xl">
-          <p className="eyebrow text-gold mb-4">Our Story</p>
-          <h2 className="text-4xl md:text-5xl serif-display mb-8 text-balance text-stone-900">
-            A Filipino heart for care, brought quietly to London.
-          </h2>
-          <div className="space-y-6 text-stone-700 leading-relaxed text-pretty">
-            <p>
-              Lythe was founded on a simple belief: care should feel like being welcomed home.
-              Rooted in a Filipino culture of hospitality, gentleness and family-first wellness, we
-              wanted to build something London hadn&apos;t quite seen — mobile massage that carried
-              the warmth of a family home and the standards of a private clinic.
-            </p>
-            <p>
-              Every therapist we work with shares that same quiet ethic: to look after each guest as
-              if they were our own. It is a small idea, delivered thoughtfully. It is why our
-              members return.
-            </p>
-          </div>
+      {/* 8. KNOWLEDGE CENTRE PREVIEW */}
+      <Section
+        eyebrow="Knowledge Centre"
+        title="Quiet insights, gathered by our therapists."
+        intro="A living library of wellbeing guides — designed to help you get the most from every treatment."
+        action={
+          <Link
+            to="/knowledge"
+            className="text-sm font-medium underline underline-offset-8 decoration-gold/60 hover:decoration-gold whitespace-nowrap"
+          >
+            Explore the library →
+          </Link>
+        }
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {KNOWLEDGE_ARTICLES.map((k) => (
+            <article
+              key={k.h}
+              className="group border border-stone-200 rounded-2xl overflow-hidden bg-stone-50 hover:border-forest/40 transition flex flex-col"
+            >
+              <div className="aspect-[16/10] bg-gradient-to-br from-stone-100 via-stone-200 to-stone-100 relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="serif-display text-3xl text-stone-500/60">{k.tag}</span>
+                </div>
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <p className="eyebrow text-gold mb-3">{k.tag}</p>
+                <h3 className="font-serif text-lg text-stone-900 mb-2">{k.h}</h3>
+                <p className="text-sm text-stone-700 leading-relaxed flex-1">{k.p}</p>
+                <span className="mt-5 text-xs font-medium tracking-[0.18em] uppercase text-forest">
+                  Read guide →
+                </span>
+              </div>
+            </article>
+          ))}
         </div>
       </Section>
 
-      {/* WELLNESS SHOP PREVIEW */}
+      {/* 9. WELLNESS SHOP PREVIEW */}
       <Section tone="warm">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div className="rounded-2xl overflow-hidden ring-1 ring-black/5 aspect-[4/5] order-2 lg:order-1">
@@ -338,10 +500,10 @@ function HomePage() {
             </h2>
             <p className="text-stone-700 leading-relaxed mb-8 text-pretty max-w-[48ch]">
               A quiet edit of botanical massage oils, recovery tools, self-care essentials and
-              gift sets — curated by our therapists and available soon.
+              curated gift sets — chosen by our therapists and available soon.
             </p>
             <ul className="grid grid-cols-2 gap-y-3 gap-x-6 text-sm text-stone-700 mb-8">
-              {["Massage oils", "Recovery tools", "Self-care", "Gift sets"].map((x) => (
+              {SHOP_PRODUCTS.map((x) => (
                 <li key={x} className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-gold" /> {x}
                 </li>
@@ -357,46 +519,187 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* KNOWLEDGE */}
+      {/* 10. MEMBERSHIP PREVIEW */}
       <Section
-        eyebrow="Knowledge Centre"
-        title="Quiet insights, gathered by our therapists."
-        intro="A living library of wellbeing guides — designed to help you get the most from every treatment."
+        eyebrow="Membership"
+        title="Wellness, made a rhythm."
+        intro="Membership brings priority booking, guaranteed therapist matching and a quieter monthly cadence to your care."
         action={
           <Link
-            to="/knowledge"
+            to="/membership"
             className="text-sm font-medium underline underline-offset-8 decoration-gold/60 hover:decoration-gold whitespace-nowrap"
           >
-            Explore the library →
+            Explore memberships →
           </Link>
         }
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {KNOWLEDGE_TOPICS.map((k) => (
-            <article
-              key={k.h}
-              className="border border-stone-200 rounded-2xl p-6 bg-stone-50 hover:border-forest/40 transition"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {MEMBERSHIPS.map((m) => (
+            <div
+              key={m.tier}
+              className={`rounded-2xl p-8 flex flex-col border transition ${
+                m.featured
+                  ? "bg-forest text-stone-100 border-forest shadow-soft"
+                  : "bg-stone-50 border-stone-200 hover:border-forest/40"
+              }`}
             >
-              <h3 className="font-serif text-lg text-stone-900 mb-2">{k.h}</h3>
-              <p className="text-sm text-stone-700 leading-relaxed">{k.p}</p>
-            </article>
+              <p
+                className={`eyebrow mb-3 ${m.featured ? "text-gold-soft" : "text-gold"}`}
+              >
+                {m.tier}
+              </p>
+              <p
+                className={`serif-display text-2xl mb-6 ${
+                  m.featured ? "text-stone-50" : "text-stone-900"
+                }`}
+              >
+                {m.tagline}
+              </p>
+              <ul className="space-y-3 text-sm leading-relaxed flex-1">
+                {m.perks.map((p) => (
+                  <li key={p} className="flex gap-3">
+                    <span
+                      className={`mt-2 size-1.5 rounded-full shrink-0 ${
+                        m.featured ? "bg-gold-soft" : "bg-gold"
+                      }`}
+                    />
+                    <span className={m.featured ? "text-stone-300" : "text-stone-700"}>{p}</span>
+                  </li>
+                ))}
+              </ul>
+              <span
+                className={`mt-8 text-xs uppercase tracking-[0.2em] ${
+                  m.featured ? "text-gold-soft" : "text-forest"
+                }`}
+              >
+                Coming Soon
+              </span>
+            </div>
           ))}
         </div>
       </Section>
 
-      {/* TESTIMONIALS */}
-      <Section tone="warm" eyebrow="In Their Words">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {[
-            { q: "A level of professionalism rarely seen outside of Harley Street. My flat became a private clinic.", a: "Elena R.", m: "Mayfair member" },
-            { q: "Booked in the morning, restored by lunchtime. The consistency across therapists is remarkable.", a: "James H.", m: "Corporate wellness partner" },
-            { q: "The prenatal care I received was intuitive, safe and deeply calming. It changed my third trimester.", a: "Sofia M.", m: "Chelsea" },
-          ].map((t) => (
-            <figure key={t.a} className="border-t border-stone-300 pt-8">
+      {/* 11. GIFT CARDS */}
+      <Section tone="warm">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-14 lg:gap-20 items-center">
+          <div>
+            <p className="eyebrow text-gold mb-4">Gift Cards</p>
+            <h2 className="text-4xl md:text-5xl serif-display mb-6 text-balance">
+              The gift of a quieter hour.
+            </h2>
+            <p className="text-stone-700 leading-relaxed mb-8 text-pretty max-w-[48ch]">
+              A beautifully packaged Lythe gift card — for the moments that matter most, and the
+              people who make them.
+            </p>
+            <Link
+              to="/gift-cards"
+              className="inline-block bg-forest text-stone-50 px-7 py-4 rounded-full text-sm font-medium hover:brightness-110 transition"
+            >
+              Explore Gift Cards
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-5">
+            {GIFT_OCCASIONS.map((g) => (
+              <div
+                key={g.h}
+                className="relative aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-black/5 bg-gradient-to-br from-stone-200 via-stone-100 to-stone-50 p-6 flex flex-col justify-end"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+                <p className="eyebrow text-gold mb-2">Occasion</p>
+                <h4 className="font-serif text-xl text-stone-900 mb-1">{g.h}</h4>
+                <p className="text-xs text-stone-700 leading-relaxed">{g.p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 12. CORPORATE WELLNESS */}
+      <Section
+        tone="dark"
+        eyebrow="Corporate Wellness"
+        title="A quieter, healthier workplace."
+        intro="From weekly on-site chair massage to full wellness activations for teams — programmes designed around your people, your floors and your calendar."
+        action={
+          <Link
+            to="/corporate"
+            className="text-sm font-medium text-gold-soft underline underline-offset-8 decoration-gold/40 hover:decoration-gold whitespace-nowrap"
+          >
+            View corporate programmes →
+          </Link>
+        }
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {CORPORATE_HIGHLIGHTS.map((c) => (
+            <div
+              key={c.h}
+              className="border border-stone-100/15 rounded-2xl p-7 bg-stone-100/[0.03] backdrop-blur-sm"
+            >
+              <h4 className="font-serif text-xl text-stone-50 mb-2">{c.h}</h4>
+              <p className="text-sm text-stone-300 leading-relaxed">{c.p}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 13. FOUNDER STORY */}
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-14 lg:gap-20 items-center">
+          <div className="max-w-2xl">
+            <p className="eyebrow text-gold mb-4">Our Story</p>
+            <h2 className="text-4xl md:text-5xl serif-display mb-8 text-balance text-stone-900">
+              A Filipino heart for care, brought quietly to London.
+            </h2>
+            <div className="space-y-6 text-stone-700 leading-relaxed text-pretty">
+              <p>
+                Lythe was founded on a simple belief: care should feel like being welcomed home.
+                Rooted in a Filipino tradition of hospitality, gentleness and family-first
+                wellbeing, we wanted to build something London hadn&apos;t quite seen — mobile
+                massage that carried the warmth of a family home and the standards of a private
+                clinic.
+              </p>
+              <p>
+                Every therapist we work with shares that same quiet ethic: to look after each guest
+                as if they were our own. It is a small idea, delivered thoughtfully — and it is why
+                our members return.
+              </p>
+              <p className="serif-display text-xl text-stone-900">
+                &ldquo;Care, given properly, is the quietest kind of luxury.&rdquo;
+              </p>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-black/5">
+              <img
+                src={therapistImg}
+                alt="Lythe founder portrait"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-6 -left-6 bg-stone-50 border border-stone-200 rounded-xl p-5 shadow-soft max-w-[220px]">
+              <p className="eyebrow text-gold mb-1">Founder</p>
+              <p className="font-serif text-lg text-stone-900 leading-tight">
+                A quiet standard of hospitality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 14. TESTIMONIALS */}
+      <Section tone="warm" eyebrow="In Their Words" title="Members, in their own words.">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {TESTIMONIALS.map((t) => (
+            <figure
+              key={t.a}
+              className="bg-stone-50 border border-stone-200 rounded-2xl p-8 flex flex-col"
+            >
+              <span className="serif-display text-5xl text-gold leading-none mb-4">&ldquo;</span>
               <blockquote className="serif-display text-2xl leading-tight text-stone-900 mb-6 text-balance">
-                &ldquo;{t.q}&rdquo;
+                {t.q}
               </blockquote>
-              <figcaption className="text-sm">
+              <figcaption className="mt-auto text-sm">
                 <p className="font-medium text-stone-900">{t.a}</p>
                 <p className="eyebrow text-stone-500 mt-1">{t.m}</p>
               </figcaption>
@@ -405,9 +708,34 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section tone="dark" className="!py-24">
+      {/* 15. INSTAGRAM PREVIEW */}
+      <Section
+        eyebrow="@lythe.wellness"
+        title="Quiet moments, gathered."
+        intro="A living gallery of the Lythe world — coming soon to Instagram."
+      >
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="relative aspect-square rounded-xl overflow-hidden ring-1 ring-black/5 bg-gradient-to-br from-stone-100 via-stone-200 to-stone-100 group"
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="serif-display text-2xl text-stone-500/60">Lythe</span>
+              </div>
+              <div className="absolute inset-0 bg-forest/0 group-hover:bg-forest/20 transition" />
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-center text-sm text-stone-500">
+          Follow us — feed launching alongside our booking platform.
+        </p>
+      </Section>
+
+      {/* 16. FINAL CTA */}
+      <Section tone="dark" className="!py-32">
         <div className="text-center max-w-2xl mx-auto">
+          <p className="eyebrow text-gold-soft mb-6">Begin</p>
           <h2 className="text-4xl md:text-6xl serif-display text-stone-50 mb-8 text-balance">
             Begin your restoration.
           </h2>
