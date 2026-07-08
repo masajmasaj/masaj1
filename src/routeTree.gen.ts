@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TreatmentsRouteImport } from './routes/treatments'
 import { Route as TherapistsRouteImport } from './routes/therapists'
+import { Route as TherapistPortalRouteImport } from './routes/therapist-portal'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
@@ -20,6 +21,7 @@ import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as JoinTherapistRouteImport } from './routes/join-therapist'
 import { Route as GiftCardsRouteImport } from './routes/gift-cards'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CorporateRouteImport } from './routes/corporate'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -38,6 +40,11 @@ const TreatmentsRoute = TreatmentsRouteImport.update({
 const TherapistsRoute = TherapistsRouteImport.update({
   id: '/therapists',
   path: '/therapists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TherapistPortalRoute = TherapistPortalRouteImport.update({
+  id: '/therapist-portal',
+  path: '/therapist-portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -83,6 +90,11 @@ const JoinTherapistRoute = JoinTherapistRouteImport.update({
 const GiftCardsRoute = GiftCardsRouteImport.update({
   id: '/gift-cards',
   path: '/gift-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CorporateRoute = CorporateRouteImport.update({
@@ -139,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
   '/join-therapist': typeof JoinTherapistRoute
   '/knowledge': typeof KnowledgeRoute
@@ -148,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/therapist-portal': typeof TherapistPortalRoute
   '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -161,6 +175,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
   '/join-therapist': typeof JoinTherapistRoute
   '/knowledge': typeof KnowledgeRoute
@@ -170,6 +185,7 @@ export interface FileRoutesByTo {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/therapist-portal': typeof TherapistPortalRoute
   '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -184,6 +200,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
   '/join-therapist': typeof JoinTherapistRoute
   '/knowledge': typeof KnowledgeRoute
@@ -193,6 +210,7 @@ export interface FileRoutesById {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/therapist-portal': typeof TherapistPortalRoute
   '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -208,6 +226,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/corporate'
+    | '/dashboard'
     | '/gift-cards'
     | '/join-therapist'
     | '/knowledge'
@@ -217,6 +236,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/therapist-portal'
     | '/therapists'
     | '/treatments'
     | '/locations/$slug'
@@ -230,6 +250,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/corporate'
+    | '/dashboard'
     | '/gift-cards'
     | '/join-therapist'
     | '/knowledge'
@@ -239,6 +260,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/therapist-portal'
     | '/therapists'
     | '/treatments'
     | '/locations/$slug'
@@ -252,6 +274,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/corporate'
+    | '/dashboard'
     | '/gift-cards'
     | '/join-therapist'
     | '/knowledge'
@@ -261,6 +284,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/therapist-portal'
     | '/therapists'
     | '/treatments'
     | '/locations/$slug'
@@ -275,6 +299,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   CorporateRoute: typeof CorporateRoute
+  DashboardRoute: typeof DashboardRoute
   GiftCardsRoute: typeof GiftCardsRoute
   JoinTherapistRoute: typeof JoinTherapistRoute
   KnowledgeRoute: typeof KnowledgeRoute
@@ -284,6 +309,7 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  TherapistPortalRoute: typeof TherapistPortalRoute
   TherapistsRoute: typeof TherapistsRouteWithChildren
   TreatmentsRoute: typeof TreatmentsRoute
 }
@@ -302,6 +328,13 @@ declare module '@tanstack/react-router' {
       path: '/therapists'
       fullPath: '/therapists'
       preLoaderRoute: typeof TherapistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/therapist-portal': {
+      id: '/therapist-portal'
+      path: '/therapist-portal'
+      fullPath: '/therapist-portal'
+      preLoaderRoute: typeof TherapistPortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -365,6 +398,13 @@ declare module '@tanstack/react-router' {
       path: '/gift-cards'
       fullPath: '/gift-cards'
       preLoaderRoute: typeof GiftCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/corporate': {
@@ -465,6 +505,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   CorporateRoute: CorporateRoute,
+  DashboardRoute: DashboardRoute,
   GiftCardsRoute: GiftCardsRoute,
   JoinTherapistRoute: JoinTherapistRoute,
   KnowledgeRoute: KnowledgeRoute,
@@ -474,6 +515,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  TherapistPortalRoute: TherapistPortalRoute,
   TherapistsRoute: TherapistsRouteWithChildren,
   TreatmentsRoute: TreatmentsRoute,
 }
