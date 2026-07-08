@@ -125,7 +125,7 @@ function TherapistProfilePage() {
             />
             <DetailBlock
               title="Visit types"
-              items={t.visitTypes.map((v) => v[0].toUpperCase() + v.slice(1))}
+              items={t.visitTypes.map((v: string) => v[0].toUpperCase() + v.slice(1))}
             />
             <DetailBlock
               title="Experience"

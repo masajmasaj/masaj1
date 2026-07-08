@@ -152,7 +152,9 @@ function JoinTherapistPage() {
       </Section>
 
       {/* ONBOARDING TIMELINE */}
-      <Section id="onboarding" eyebrow="Onboarding" title="From application to live in six steps.">
+      <div id="onboarding" />
+      <Section eyebrow="Onboarding" title="From application to live in six steps.">
+
         <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {ONBOARDING.map((s) => (
             <li key={s.n} className="border border-stone-200 rounded-2xl bg-stone-50 p-6">

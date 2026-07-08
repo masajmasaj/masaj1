@@ -58,7 +58,7 @@ function TherapistsPage() {
   }, [local]);
 
   function update<K extends keyof typeof local>(key: K, value: (typeof local)[K]) {
-    setLocal((s) => ({ ...s, [key]: value }));
+    setLocal((s: typeof local) => ({ ...s, [key]: value }));
   }
 
   const specialities = Array.from(new Set(THERAPISTS.flatMap((t) => t.specialities))).sort();
