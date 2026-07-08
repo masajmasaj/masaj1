@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TreatmentsRouteImport } from './routes/treatments'
 import { Route as TherapistsRouteImport } from './routes/therapists'
+import { Route as TherapistPortalRouteImport } from './routes/therapist-portal'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
@@ -18,13 +19,17 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as JoinTherapistRouteImport } from './routes/join-therapist'
 import { Route as GiftCardsRouteImport } from './routes/gift-cards'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CorporateRouteImport } from './routes/corporate'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookingRouteImport } from './routes/booking'
+import { Route as AreasRouteImport } from './routes/areas'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TherapistsSlugRouteImport } from './routes/therapists.$slug'
 import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 
 const TreatmentsRoute = TreatmentsRouteImport.update({
@@ -35,6 +40,11 @@ const TreatmentsRoute = TreatmentsRouteImport.update({
 const TherapistsRoute = TherapistsRouteImport.update({
   id: '/therapists',
   path: '/therapists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TherapistPortalRoute = TherapistPortalRouteImport.update({
+  id: '/therapist-portal',
+  path: '/therapist-portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -72,9 +82,19 @@ const KnowledgeRoute = KnowledgeRouteImport.update({
   path: '/knowledge',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoinTherapistRoute = JoinTherapistRouteImport.update({
+  id: '/join-therapist',
+  path: '/join-therapist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GiftCardsRoute = GiftCardsRouteImport.update({
   id: '/gift-cards',
   path: '/gift-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CorporateRoute = CorporateRouteImport.update({
@@ -97,6 +117,11 @@ const BookingRoute = BookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AreasRoute = AreasRouteImport.update({
+  id: '/areas',
+  path: '/areas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -107,6 +132,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TherapistsSlugRoute = TherapistsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => TherapistsRoute,
+} as any)
 const LocationsSlugRoute = LocationsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -116,11 +146,14 @@ const LocationsSlugRoute = LocationsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/areas': typeof AreasRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
+  '/join-therapist': typeof JoinTherapistRoute
   '/knowledge': typeof KnowledgeRoute
   '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
@@ -128,18 +161,23 @@ export interface FileRoutesByFullPath {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/therapists': typeof TherapistsRoute
+  '/therapist-portal': typeof TherapistPortalRoute
+  '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
   '/locations/$slug': typeof LocationsSlugRoute
+  '/therapists/$slug': typeof TherapistsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/areas': typeof AreasRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
+  '/join-therapist': typeof JoinTherapistRoute
   '/knowledge': typeof KnowledgeRoute
   '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
@@ -147,19 +185,24 @@ export interface FileRoutesByTo {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/therapists': typeof TherapistsRoute
+  '/therapist-portal': typeof TherapistPortalRoute
+  '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
   '/locations/$slug': typeof LocationsSlugRoute
+  '/therapists/$slug': typeof TherapistsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/areas': typeof AreasRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/corporate': typeof CorporateRoute
+  '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
+  '/join-therapist': typeof JoinTherapistRoute
   '/knowledge': typeof KnowledgeRoute
   '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
@@ -167,20 +210,25 @@ export interface FileRoutesById {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/therapists': typeof TherapistsRoute
+  '/therapist-portal': typeof TherapistPortalRoute
+  '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
   '/locations/$slug': typeof LocationsSlugRoute
+  '/therapists/$slug': typeof TherapistsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/areas'
     | '/booking'
     | '/contact'
     | '/cookies'
     | '/corporate'
+    | '/dashboard'
     | '/gift-cards'
+    | '/join-therapist'
     | '/knowledge'
     | '/locations'
     | '/membership'
@@ -188,18 +236,23 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/therapist-portal'
     | '/therapists'
     | '/treatments'
     | '/locations/$slug'
+    | '/therapists/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/areas'
     | '/booking'
     | '/contact'
     | '/cookies'
     | '/corporate'
+    | '/dashboard'
     | '/gift-cards'
+    | '/join-therapist'
     | '/knowledge'
     | '/locations'
     | '/membership'
@@ -207,18 +260,23 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/therapist-portal'
     | '/therapists'
     | '/treatments'
     | '/locations/$slug'
+    | '/therapists/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/areas'
     | '/booking'
     | '/contact'
     | '/cookies'
     | '/corporate'
+    | '/dashboard'
     | '/gift-cards'
+    | '/join-therapist'
     | '/knowledge'
     | '/locations'
     | '/membership'
@@ -226,19 +284,24 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/therapist-portal'
     | '/therapists'
     | '/treatments'
     | '/locations/$slug'
+    | '/therapists/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AreasRoute: typeof AreasRoute
   BookingRoute: typeof BookingRoute
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   CorporateRoute: typeof CorporateRoute
+  DashboardRoute: typeof DashboardRoute
   GiftCardsRoute: typeof GiftCardsRoute
+  JoinTherapistRoute: typeof JoinTherapistRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LocationsRoute: typeof LocationsRouteWithChildren
   MembershipRoute: typeof MembershipRoute
@@ -246,7 +309,8 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
-  TherapistsRoute: typeof TherapistsRoute
+  TherapistPortalRoute: typeof TherapistPortalRoute
+  TherapistsRoute: typeof TherapistsRouteWithChildren
   TreatmentsRoute: typeof TreatmentsRoute
 }
 
@@ -264,6 +328,13 @@ declare module '@tanstack/react-router' {
       path: '/therapists'
       fullPath: '/therapists'
       preLoaderRoute: typeof TherapistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/therapist-portal': {
+      id: '/therapist-portal'
+      path: '/therapist-portal'
+      fullPath: '/therapist-portal'
+      preLoaderRoute: typeof TherapistPortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -315,11 +386,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KnowledgeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/join-therapist': {
+      id: '/join-therapist'
+      path: '/join-therapist'
+      fullPath: '/join-therapist'
+      preLoaderRoute: typeof JoinTherapistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gift-cards': {
       id: '/gift-cards'
       path: '/gift-cards'
       fullPath: '/gift-cards'
       preLoaderRoute: typeof GiftCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/corporate': {
@@ -350,6 +435,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/areas': {
+      id: '/areas'
+      path: '/areas'
+      fullPath: '/areas'
+      preLoaderRoute: typeof AreasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -363,6 +455,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/therapists/$slug': {
+      id: '/therapists/$slug'
+      path: '/$slug'
+      fullPath: '/therapists/$slug'
+      preLoaderRoute: typeof TherapistsSlugRouteImport
+      parentRoute: typeof TherapistsRoute
     }
     '/locations/$slug': {
       id: '/locations/$slug'
@@ -386,14 +485,29 @@ const LocationsRouteWithChildren = LocationsRoute._addFileChildren(
   LocationsRouteChildren,
 )
 
+interface TherapistsRouteChildren {
+  TherapistsSlugRoute: typeof TherapistsSlugRoute
+}
+
+const TherapistsRouteChildren: TherapistsRouteChildren = {
+  TherapistsSlugRoute: TherapistsSlugRoute,
+}
+
+const TherapistsRouteWithChildren = TherapistsRoute._addFileChildren(
+  TherapistsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AreasRoute: AreasRoute,
   BookingRoute: BookingRoute,
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   CorporateRoute: CorporateRoute,
+  DashboardRoute: DashboardRoute,
   GiftCardsRoute: GiftCardsRoute,
+  JoinTherapistRoute: JoinTherapistRoute,
   KnowledgeRoute: KnowledgeRoute,
   LocationsRoute: LocationsRouteWithChildren,
   MembershipRoute: MembershipRoute,
@@ -401,7 +515,8 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
-  TherapistsRoute: TherapistsRoute,
+  TherapistPortalRoute: TherapistPortalRoute,
+  TherapistsRoute: TherapistsRouteWithChildren,
   TreatmentsRoute: TreatmentsRoute,
 }
 export const routeTree = rootRouteImport

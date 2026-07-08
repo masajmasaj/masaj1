@@ -9,9 +9,10 @@ export const BRAND = {
 export const PRIMARY_NAV = [
   { to: "/treatments", label: "Treatments" },
   { to: "/therapists", label: "Therapists" },
-  { to: "/locations", label: "Locations" },
+  { to: "/areas", label: "Areas" },
   { to: "/corporate", label: "Corporate" },
   { to: "/membership", label: "Membership" },
+  { to: "/join-therapist", label: "Join as Therapist" },
 ] as const;
 
 export const FOOTER_NAV = {

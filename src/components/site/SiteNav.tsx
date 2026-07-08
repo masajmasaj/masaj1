@@ -26,8 +26,8 @@ export function SiteNav() {
           </div>
         </div>
         <div className="flex items-center gap-4 shrink-0">
-          <Link to="/contact" className="hidden sm:inline text-sm font-medium text-stone-700 hover:text-forest">
-            Login
+          <Link to="/dashboard" className="hidden sm:inline text-sm font-medium text-stone-700 hover:text-forest">
+            Dashboard
           </Link>
           <Link
             to="/booking"
