@@ -19,6 +19,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as JournalRouteImport } from './routes/journal'
 import { Route as JoinTherapistRouteImport } from './routes/join-therapist'
 import { Route as GiftCardsRouteImport } from './routes/gift-cards'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -31,6 +32,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TherapistsSlugRouteImport } from './routes/therapists.$slug'
 import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
 const TreatmentsRoute = TreatmentsRouteImport.update({
   id: '/treatments',
@@ -80,6 +82,11 @@ const LocationsRoute = LocationsRouteImport.update({
 const KnowledgeRoute = KnowledgeRouteImport.update({
   id: '/knowledge',
   path: '/knowledge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinTherapistRoute = JoinTherapistRouteImport.update({
@@ -142,6 +149,11 @@ const LocationsSlugRoute = LocationsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => LocationsRoute,
 } as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => JournalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -154,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
   '/join-therapist': typeof JoinTherapistRoute
+  '/journal': typeof JournalRouteWithChildren
   '/knowledge': typeof KnowledgeRoute
   '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
@@ -164,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/therapist-portal': typeof TherapistPortalRoute
   '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/therapists/$slug': typeof TherapistsSlugRoute
 }
@@ -178,6 +192,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
   '/join-therapist': typeof JoinTherapistRoute
+  '/journal': typeof JournalRouteWithChildren
   '/knowledge': typeof KnowledgeRoute
   '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
@@ -188,6 +203,7 @@ export interface FileRoutesByTo {
   '/therapist-portal': typeof TherapistPortalRoute
   '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/therapists/$slug': typeof TherapistsSlugRoute
 }
@@ -203,6 +219,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/gift-cards': typeof GiftCardsRoute
   '/join-therapist': typeof JoinTherapistRoute
+  '/journal': typeof JournalRouteWithChildren
   '/knowledge': typeof KnowledgeRoute
   '/locations': typeof LocationsRouteWithChildren
   '/membership': typeof MembershipRoute
@@ -213,6 +230,7 @@ export interface FileRoutesById {
   '/therapist-portal': typeof TherapistPortalRoute
   '/therapists': typeof TherapistsRouteWithChildren
   '/treatments': typeof TreatmentsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/therapists/$slug': typeof TherapistsSlugRoute
 }
@@ -229,6 +247,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/gift-cards'
     | '/join-therapist'
+    | '/journal'
     | '/knowledge'
     | '/locations'
     | '/membership'
@@ -239,6 +258,7 @@ export interface FileRouteTypes {
     | '/therapist-portal'
     | '/therapists'
     | '/treatments'
+    | '/journal/$slug'
     | '/locations/$slug'
     | '/therapists/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -253,6 +273,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/gift-cards'
     | '/join-therapist'
+    | '/journal'
     | '/knowledge'
     | '/locations'
     | '/membership'
@@ -263,6 +284,7 @@ export interface FileRouteTypes {
     | '/therapist-portal'
     | '/therapists'
     | '/treatments'
+    | '/journal/$slug'
     | '/locations/$slug'
     | '/therapists/$slug'
   id:
@@ -277,6 +299,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/gift-cards'
     | '/join-therapist'
+    | '/journal'
     | '/knowledge'
     | '/locations'
     | '/membership'
@@ -287,6 +310,7 @@ export interface FileRouteTypes {
     | '/therapist-portal'
     | '/therapists'
     | '/treatments'
+    | '/journal/$slug'
     | '/locations/$slug'
     | '/therapists/$slug'
   fileRoutesById: FileRoutesById
@@ -302,6 +326,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   GiftCardsRoute: typeof GiftCardsRoute
   JoinTherapistRoute: typeof JoinTherapistRoute
+  JournalRoute: typeof JournalRouteWithChildren
   KnowledgeRoute: typeof KnowledgeRoute
   LocationsRoute: typeof LocationsRouteWithChildren
   MembershipRoute: typeof MembershipRoute
@@ -384,6 +409,13 @@ declare module '@tanstack/react-router' {
       path: '/knowledge'
       fullPath: '/knowledge'
       preLoaderRoute: typeof KnowledgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/join-therapist': {
@@ -470,8 +502,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsSlugRouteImport
       parentRoute: typeof LocationsRoute
     }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof JournalRoute
+    }
   }
 }
+
+interface JournalRouteChildren {
+  JournalSlugRoute: typeof JournalSlugRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalSlugRoute: JournalSlugRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
 
 interface LocationsRouteChildren {
   LocationsSlugRoute: typeof LocationsSlugRoute
@@ -508,6 +558,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   GiftCardsRoute: GiftCardsRoute,
   JoinTherapistRoute: JoinTherapistRoute,
+  JournalRoute: JournalRouteWithChildren,
   KnowledgeRoute: KnowledgeRoute,
   LocationsRoute: LocationsRouteWithChildren,
   MembershipRoute: MembershipRoute,
