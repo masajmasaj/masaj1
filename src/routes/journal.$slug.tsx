@@ -90,7 +90,7 @@ function NotFoundArticle() {
 }
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
+  const { article } = Route.useLoaderData() as { article: JournalArticle };
   const related = relatedArticles(article, 3);
   const treatments = (article.relatedTreatments ?? [])
     .map((s) => TREATMENTS.find((t) => t.slug === s))
