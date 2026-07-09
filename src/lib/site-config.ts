@@ -25,7 +25,7 @@ export const FOOTER_NAV = {
   ],
   company: [
     { to: "/corporate", label: "Corporate" },
-    { to: "/knowledge", label: "Knowledge Centre" },
+    { to: "/journal", label: "Journal" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
   ],

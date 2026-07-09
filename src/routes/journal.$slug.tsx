@@ -1,11 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { JournalCard } from "@/components/site/JournalCard";
-import { articleBySlug, relatedArticles } from "@/lib/journal";
+import { articleBySlug, relatedArticles, type JournalArticle } from "@/lib/journal";
 import { TREATMENTS } from "@/lib/treatments";
 
 export const Route = createFileRoute("/journal/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { article: JournalArticle } => {
     const article = articleBySlug(params.slug);
     if (!article) throw notFound();
     return { article };

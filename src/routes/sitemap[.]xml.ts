@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { LOCATION_PAGES } from "@/lib/locations";
+import { JOURNAL_ARTICLES } from "@/lib/journal";
 
 // TODO: replace with your project URL once a project name or custom domain is set.
 const BASE_URL = "";
@@ -23,7 +24,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/membership", changefreq: "monthly", priority: "0.8" },
           { path: "/booking", changefreq: "monthly", priority: "0.9" },
           { path: "/locations", changefreq: "monthly", priority: "0.8" },
-          { path: "/knowledge", changefreq: "monthly", priority: "0.6" },
+          { path: "/journal", changefreq: "weekly", priority: "0.7" },
+          ...JOURNAL_ARTICLES.map((a) => ({
+            path: `/journal/${a.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.6",
+          })),
           { path: "/shop", changefreq: "monthly", priority: "0.6" },
           { path: "/gift-cards", changefreq: "monthly", priority: "0.6" },
           { path: "/about", changefreq: "monthly", priority: "0.5" },
