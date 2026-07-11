@@ -153,18 +153,37 @@ function HomePage() {
             Lythe · London
           </p>
           <h1 className="serif-display text-[2.75rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-[18ch] text-balance">
-            Luxury mobile massage &amp; wellness, delivered across London.
+            Luxury Mobile Massage &amp; Wellness Across London.
           </h1>
-          <p className="mt-8 max-w-[52ch] text-base md:text-lg text-stone-200/90 leading-relaxed">
-            Professional therapists for home, hotel, office and corporate wellness experiences —
-            considered, discreet, quietly exceptional.
+          <p className="mt-8 max-w-[46ch] text-base md:text-lg text-stone-200/90 leading-relaxed">
+            Considered care, brought to your home, hotel or office by vetted London therapists.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/booking"
               className="bg-stone-50 text-stone-900 px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-gold hover:text-stone-50 transition"
             >
-              Book a Treatment
+              Book Now
+            </Link>
+            <Link
+              to="/treatments"
+              className="text-sm font-medium text-stone-50 border-b border-stone-50/60 pb-1 hover:border-gold hover:text-gold-soft transition"
+            >
+              Explore Treatments →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Elegant booking widget — floating on stone */}
+      <section className="bg-stone-50">
+        <div className="max-w-6xl mx-auto px-6 -mt-14 md:-mt-16 relative z-20">
+          <div className="rounded-2xl bg-stone-50 shadow-[0_30px_80px_-40px_rgba(20,20,15,0.35)] ring-1 ring-stone-200/60 overflow-hidden">
+            <BookingWidget />
+          </div>
+        </div>
+      </section>
+
             </Link>
             <Link
               to="/treatments"
