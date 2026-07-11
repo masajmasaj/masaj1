@@ -48,32 +48,54 @@ const ONBOARDING = [
 ];
 
 type Form = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   postcode: string;
+  specialities: string;
   experience: string;
   qualification: string;
+  contactMethod: "email" | "phone" | "";
+  consent: boolean;
 };
 
 const STEPS = ["You", "Practice", "Contact"] as const;
 
+const APPLY_REASSURE = [
+  "Applying is free, with no obligation.",
+  "Only the essentials now — around two minutes.",
+  "Insurance, DBS and references are collected securely during onboarding.",
+  "Your details are private and never shared.",
+];
+
+const AFTER_APPLY = [
+  { n: "01", h: "We review", p: "Our clinical lead reads every application personally, within three working days." },
+  { n: "02", h: "A short conversation", p: "A relaxed call and a brief practical to meet the team." },
+  { n: "03", h: "Secure verification", p: "DBS, insurance and references, uploaded through our encrypted portal." },
+  { n: "04", h: "Welcome & go live", p: "Brand onboarding and your first bookings begin arriving." },
+];
+
 function JoinTherapistPage() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<Form>({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     postcode: "",
+    specialities: "",
     experience: "",
     qualification: "",
+    contactMethod: "",
+    consent: false,
   });
   const [submitted, setSubmitted] = useState(false);
 
   const canAdvance =
-    (step === 0 && form.name.trim() && form.postcode.trim()) ||
-    (step === 1 && form.experience.trim() && form.qualification.trim()) ||
-    step === 2;
+    (step === 0 && form.firstName.trim() && form.lastName.trim() && form.postcode.trim()) ||
+    (step === 1 && form.specialities.trim() && form.experience.trim() && form.qualification.trim()) ||
+    (step === 2 && form.email.trim() && form.phone.trim() && form.contactMethod && form.consent);
 
   return (
     <SiteLayout>
