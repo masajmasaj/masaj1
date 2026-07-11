@@ -184,25 +184,7 @@ function HomePage() {
         </div>
       </section>
 
-            </Link>
-            <Link
-              to="/treatments"
-              className="text-sm font-medium text-stone-50 border-b border-stone-50/60 pb-1 hover:border-gold hover:text-gold-soft transition"
-            >
-              Explore the menu →
-            </Link>
-          </div>
-        </div>
-      </section>
 
-      {/* Soft booking widget — floating on stone */}
-      <section className="bg-stone-50">
-        <div className="max-w-6xl mx-auto px-6 -mt-14 md:-mt-16 relative z-20">
-          <div className="rounded-2xl bg-stone-50 shadow-soft ring-1 ring-stone-200/80 p-3 md:p-4">
-            <BookingWidget />
-          </div>
-        </div>
-      </section>
 
       <div className="bg-stone-50 pt-16 md:pt-20">
         <TrustBand />
