@@ -180,150 +180,226 @@ function JoinTherapistPage() {
       </Section>
 
       {/* MULTI-STEP APPLICATION */}
-      <section id="apply" className="bg-stone-100 py-28 md:py-36">
-        <div className="max-w-2xl mx-auto px-6">
-          <p className="eyebrow text-gold mb-4">Apply</p>
-          <h2 className="serif-display text-4xl md:text-5xl text-stone-900 mb-4 text-balance">
-            Begin your application.
-          </h2>
-          <p className="text-stone-700 mb-12 max-w-[42ch] leading-relaxed">
-            Under two minutes. We&apos;ll respond within three working days.
-          </p>
-
-          {submitted ? (
-            <div className="bg-stone-50 p-12 md:p-16 text-center">
-              <p className="serif-display text-4xl text-stone-900 mb-4">Thank you.</p>
-              <p className="text-stone-700 max-w-md mx-auto mb-8 leading-relaxed">
-                Your application has been received. Our team will be in touch within three working
-                days.
-              </p>
-              <Link
-                to="/"
-                className="text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
-              >
-                Back to home →
-              </Link>
+      <section id="apply" className="bg-stone-100 py-24 md:py-32">
+        <div className="max-w-4xl mx-auto px-6 grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-14 items-start">
+          {/* Reassurance panel */}
+          <aside className="lg:sticky lg:top-28">
+            <p className="eyebrow text-gold mb-4">Apply</p>
+            <h2 className="serif-display text-4xl md:text-5xl text-stone-900 mb-5 text-balance">
+              Begin your application.
+            </h2>
+            <p className="text-stone-700 mb-8 max-w-[40ch] leading-relaxed">
+              Applying takes around two minutes. There&apos;s no obligation, and we&apos;ll respond within three working days.
+            </p>
+            <ul className="space-y-3 mb-8">
+              {APPLY_REASSURE.map((r) => (
+                <li key={r} className="flex items-start gap-3 text-sm text-stone-800">
+                  <span className="mt-1.5 size-1.5 rounded-full bg-forest shrink-0" />
+                  {r}
+                </li>
+              ))}
+            </ul>
+            <div className="border-t border-stone-200 pt-6">
+              <p className="eyebrow text-stone-500 mb-4">What happens after I apply?</p>
+              <ol className="space-y-4">
+                {AFTER_APPLY.map((s) => (
+                  <li key={s.n} className="flex gap-4">
+                    <span className="serif-display text-gold text-sm shrink-0">{s.n}</span>
+                    <div>
+                      <p className="font-serif text-base text-stone-900">{s.h}</p>
+                      <p className="text-xs text-stone-600 leading-relaxed">{s.p}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
-          ) : (
-            <div className="bg-stone-50 p-8 md:p-12">
-              {/* Progress */}
-              <div className="mb-10">
-                <div className="flex items-center gap-3 mb-4">
-                  {STEPS.map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-[2px] flex-1 transition-colors ${
-                        i <= step ? "bg-forest" : "bg-stone-200"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center justify-between">
-                  <p className="eyebrow text-stone-500">
-                    Step {step + 1} of {STEPS.length}
-                  </p>
-                  <p className="eyebrow text-forest">{STEPS[step]}</p>
-                </div>
+          </aside>
+
+          <div>
+            {submitted ? (
+              <div className="bg-stone-50 p-10 md:p-14 text-center">
+                <p className="serif-display text-4xl text-stone-900 mb-4">Thank you.</p>
+                <p className="text-stone-700 max-w-md mx-auto mb-8 leading-relaxed">
+                  Your application has been received. Our team will be in touch within three working days.
+                </p>
+                <Link
+                  to="/"
+                  className="text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
+                >
+                  Back to home →
+                </Link>
               </div>
-
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (step < STEPS.length - 1) {
-                    if (canAdvance) setStep(step + 1);
-                  } else {
-                    setSubmitted(true);
-                  }
-                }}
-                className="space-y-6"
-              >
-                {step === 0 && (
-                  <>
-                    <ApplyField
-                      label="Full name"
-                      value={form.name}
-                      onChange={(v) => setForm({ ...form, name: v })}
-                      required
-                    />
-                    <ApplyField
-                      label="Home postcode"
-                      value={form.postcode}
-                      onChange={(v) => setForm({ ...form, postcode: v })}
-                      placeholder="e.g. SW1A"
-                      required
-                    />
-                  </>
-                )}
-                {step === 1 && (
-                  <>
-                    <ApplyField
-                      label="Years of experience"
-                      value={form.experience}
-                      onChange={(v) => setForm({ ...form, experience: v })}
-                      placeholder="e.g. 5"
-                      required
-                    />
-                    <ApplyField
-                      label="Primary qualification"
-                      value={form.qualification}
-                      onChange={(v) => setForm({ ...form, qualification: v })}
-                      placeholder="e.g. Level 4 Sports Massage"
-                      required
-                    />
-                  </>
-                )}
-                {step === 2 && (
-                  <>
-                    <ApplyField
-                      label="Email"
-                      type="email"
-                      value={form.email}
-                      onChange={(v) => setForm({ ...form, email: v })}
-                      required
-                    />
-                    <ApplyField
-                      label="Phone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={(v) => setForm({ ...form, phone: v })}
-                      required
-                    />
-                  </>
-                )}
-
-                <div className="flex items-center justify-between pt-6">
-                  {step > 0 ? (
+            ) : (
+              <div className="bg-stone-50 p-6 md:p-10">
+                {/* Progress */}
+                <div className="mb-8">
+                  <div className="flex items-center gap-2 mb-3">
+                    {STEPS.map((_, i) => (
+                      <div
+                        key={i}
+                        className={`h-[3px] flex-1 rounded-full transition-colors ${
+                          i <= step ? "bg-forest" : "bg-stone-200"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="eyebrow text-stone-500">
+                      Step {step + 1} of {STEPS.length} · {STEPS[step]}
+                    </p>
                     <button
                       type="button"
-                      onClick={() => setStep(step - 1)}
-                      className="text-sm font-medium text-stone-600 hover:text-forest transition"
+                      disabled
+                      title="Save & return — coming soon"
+                      className="text-[11px] uppercase tracking-[0.15em] text-stone-400"
                     >
-                      ← Back
+                      Save & return
                     </button>
-                  ) : (
-                    <span />
-                  )}
-                  <button
-                    type="submit"
-                    disabled={!canAdvance}
-                    className="bg-forest text-stone-50 px-8 py-4 rounded-full text-sm font-medium hover:bg-gold transition disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    {step < STEPS.length - 1 ? "Continue" : "Submit Application"}
-                  </button>
+                  </div>
                 </div>
 
-                {step === STEPS.length - 1 && (
-                  <p className="text-xs text-stone-500 pt-4">
-                    By submitting, you agree to our{" "}
-                    <Link to="/privacy" className="underline underline-offset-4">
-                      privacy policy
-                    </Link>
-                    .
-                  </p>
-                )}
-              </form>
-            </div>
-          )}
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (step < STEPS.length - 1) {
+                      if (canAdvance) setStep(step + 1);
+                    } else if (canAdvance) {
+                      setSubmitted(true);
+                    }
+                  }}
+                  className="space-y-6"
+                >
+                  {step === 0 && (
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <ApplyField
+                        label="First name"
+                        value={form.firstName}
+                        onChange={(v) => setForm({ ...form, firstName: v })}
+                        required
+                      />
+                      <ApplyField
+                        label="Last name"
+                        value={form.lastName}
+                        onChange={(v) => setForm({ ...form, lastName: v })}
+                        required
+                      />
+                      <div className="sm:col-span-2">
+                        <ApplyField
+                          label="London area or postcode"
+                          value={form.postcode}
+                          onChange={(v) => setForm({ ...form, postcode: v })}
+                          placeholder="e.g. Chelsea or SW3"
+                          required
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {step === 1 && (
+                    <>
+                      <ApplyField
+                        label="Main treatment specialities"
+                        value={form.specialities}
+                        onChange={(v) => setForm({ ...form, specialities: v })}
+                        placeholder="e.g. Deep tissue, Sports, Prenatal"
+                        required
+                      />
+                      <ApplyField
+                        label="Experience level"
+                        value={form.experience}
+                        onChange={(v) => setForm({ ...form, experience: v })}
+                        placeholder="e.g. 5 years"
+                        required
+                      />
+                      <ApplyField
+                        label="Current professional qualification"
+                        value={form.qualification}
+                        onChange={(v) => setForm({ ...form, qualification: v })}
+                        placeholder="e.g. Level 4 Sports Massage"
+                        required
+                      />
+                      <p className="text-xs text-stone-500 leading-relaxed">
+                        Insurance certificates, DBS and references are collected securely later — not now.
+                      </p>
+                    </>
+                  )}
+                  {step === 2 && (
+                    <>
+                      <ApplyField
+                        label="Email"
+                        type="email"
+                        value={form.email}
+                        onChange={(v) => setForm({ ...form, email: v })}
+                        required
+                      />
+                      <ApplyField
+                        label="Phone"
+                        type="tel"
+                        value={form.phone}
+                        onChange={(v) => setForm({ ...form, phone: v })}
+                        required
+                      />
+                      <div>
+                        <span className="eyebrow text-stone-500 block mb-3">Preferred contact method</span>
+                        <div className="flex gap-2">
+                          {(["email", "phone"] as const).map((m) => (
+                            <button
+                              type="button"
+                              key={m}
+                              onClick={() => setForm({ ...form, contactMethod: m })}
+                              className={`px-5 py-2.5 rounded-full text-sm border transition capitalize ${
+                                form.contactMethod === m
+                                  ? "border-forest bg-forest text-stone-50"
+                                  : "border-stone-300 hover:border-forest/40"
+                              }`}
+                            >
+                              {m}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <label className="flex items-start gap-3 text-sm text-stone-700">
+                        <input
+                          type="checkbox"
+                          checked={form.consent}
+                          onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+                          className="mt-1 accent-forest"
+                        />
+                        <span>
+                          I agree to Lythe contacting me about this application. My details stay
+                          private — see our{" "}
+                          <Link to="/privacy" className="underline underline-offset-4">
+                            privacy policy
+                          </Link>
+                          .
+                        </span>
+                      </label>
+                    </>
+                  )}
+
+                  <div className="flex items-center justify-between pt-6 gap-4">
+                    {step > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => setStep(step - 1)}
+                        className="text-sm font-medium text-stone-600 hover:text-forest transition"
+                      >
+                        ← Back
+                      </button>
+                    ) : (
+                      <span />
+                    )}
+                    <button
+                      type="submit"
+                      disabled={!canAdvance}
+                      className="bg-forest text-stone-50 px-8 py-4 rounded-full text-sm font-medium hover:bg-gold transition disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      {step < STEPS.length - 1 ? "Continue" : "Submit Application"}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </SiteLayout>
