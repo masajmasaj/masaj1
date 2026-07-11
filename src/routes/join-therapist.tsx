@@ -21,12 +21,12 @@ export const Route = createFileRoute("/join-therapist")({
 });
 
 const BENEFITS = [
-  { h: "Premium Clientele", p: "Vetted, respectful clients in London's most desirable postcodes." },
-  { h: "Fair Earnings", p: "Transparent pay structure with no hidden platform fees." },
-  { h: "Flexible Schedule", p: "You choose your working hours, coverage area and visit types." },
+  { h: "Flexible Working", p: "Set your own hours, coverage and visit types." },
+  { h: "More Clients", p: "Vetted, respectful clients in London's finest postcodes." },
   { h: "Professional Support", p: "Dedicated concierge, insurance-backed bookings, ongoing training." },
-  { h: "Marketing Done For You", p: "SEO, brand and demand generation handled — you focus on your craft." },
-  { h: "Career Development", p: "Continuous learning across prenatal, sports rehab and corporate wellness." },
+  { h: "Luxury Brand", p: "A quiet, considered brand your work deserves." },
+  { h: "Career Growth", p: "Continuous learning across prenatal, sports and corporate wellness." },
+  { h: "Fair Earnings", p: "Transparent pay. No hidden platform fees." },
 ];
 
 const CHECKLIST = [
@@ -39,198 +39,268 @@ const CHECKLIST = [
 ];
 
 const ONBOARDING = [
-  { n: "01", h: "Apply Online", p: "Complete the short application below and upload your credentials." },
-  { n: "02", h: "Portfolio Review", p: "Our clinical lead reviews your qualifications and experience." },
-  { n: "03", h: "Interview & Assessment", p: "A conversation with our team and a practical technique review." },
-  { n: "04", h: "Compliance Check", p: "DBS verification, insurance sign-off and reference checks." },
-  { n: "05", h: "Onboarding", p: "Brand training, platform walkthrough and welcome pack." },
-  { n: "06", h: "Go Live", p: "Your profile goes live and bookings begin arriving." },
+  { n: "01", h: "Apply", p: "Two minutes. Only the essentials." },
+  { n: "02", h: "Review", p: "Our clinical lead reviews your profile." },
+  { n: "03", h: "Meet", p: "A conversation and a short practical." },
+  { n: "04", h: "Verify", p: "DBS, insurance and reference checks." },
+  { n: "05", h: "Onboard", p: "Brand training and welcome pack." },
+  { n: "06", h: "Go Live", p: "Bookings begin arriving." },
 ];
 
+type Form = {
+  name: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  experience: string;
+  qualification: string;
+};
+
+const STEPS = ["You", "Practice", "Contact"] as const;
+
 function JoinTherapistPage() {
-  const [form, setForm] = useState({
+  const [step, setStep] = useState(0);
+  const [form, setForm] = useState<Form>({
     name: "",
     email: "",
     phone: "",
     postcode: "",
     experience: "",
-    qualifications: "",
-    speciality: "",
-    availability: "",
-    about: "",
+    qualification: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
+  const canAdvance =
+    (step === 0 && form.name.trim() && form.postcode.trim()) ||
+    (step === 1 && form.experience.trim() && form.qualification.trim()) ||
+    step === 2;
+
   return (
     <SiteLayout>
-      {/* HERO */}
-      <section className="bg-forest text-stone-100 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 grid lg:grid-cols-[1.2fr_1fr] gap-14 items-center">
-          <div className="max-w-2xl">
-            <p className="eyebrow text-gold-soft mb-4">Careers · Therapists</p>
-            <h1 className="text-4xl md:text-6xl serif-display text-stone-50 mb-6 text-balance">
-              Join London&apos;s most considered wellness collective.
-            </h1>
-            <p className="text-stone-300 text-lg leading-relaxed mb-8 max-w-xl">
-              We&apos;re building a home for the UK&apos;s finest mobile massage therapists — with
-              premium clients, fair earnings and the professional support you deserve.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#apply"
-                className="bg-gold text-stone-50 px-7 py-4 rounded-full text-sm font-medium hover:brightness-110 transition"
-              >
-                Apply Now
-              </a>
-              <a
-                href="#onboarding"
-                className="border border-stone-100/30 text-stone-100 px-7 py-4 rounded-full text-sm font-medium hover:bg-stone-100/10 transition"
-              >
-                How It Works
-              </a>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { v: "£45–95", l: "Per hour, average" },
-              { v: "500+", l: "Clients on the platform" },
-              { v: "Top 3%", l: "Applicant acceptance" },
-              { v: "You", l: "Choose your hours" },
-            ].map((s) => (
-              <div key={s.l} className="border border-stone-100/15 rounded-2xl p-6 bg-stone-100/[0.04]">
-                <p className="serif-display text-3xl text-stone-50 mb-2">{s.v}</p>
-                <p className="eyebrow text-stone-300">{s.l}</p>
-              </div>
-            ))}
+      {/* HERO — quieter */}
+      <section className="bg-forest text-stone-100">
+        <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">
+          <p className="eyebrow text-gold-soft mb-5">Careers · Therapists</p>
+          <h1 className="serif-display text-4xl md:text-6xl lg:text-7xl text-stone-50 mb-8 max-w-[20ch] text-balance">
+            Join London&apos;s most considered wellness collective.
+          </h1>
+          <p className="text-stone-300 text-lg leading-relaxed max-w-[46ch] mb-10">
+            Premium clients. Fair earnings. Real support. Apply in under two minutes.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="#apply"
+              className="bg-stone-50 text-stone-900 px-8 py-4 rounded-full text-sm font-medium hover:bg-gold hover:text-stone-50 transition"
+            >
+              Apply Now
+            </a>
+            <a
+              href="#onboarding"
+              className="text-sm font-medium text-stone-100 border-b border-stone-100/50 pb-1 hover:border-gold hover:text-gold-soft transition self-center"
+            >
+              How it works →
+            </a>
           </div>
         </div>
       </section>
 
-      {/* BENEFITS */}
-      <Section eyebrow="Why Lythe" title="Everything you need to grow your practice.">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {/* BENEFITS — softer */}
+      <Section eyebrow="Why Lythe" title="A better place to practise.">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
           {BENEFITS.map((b, i) => (
-            <div key={b.h} className="border border-stone-200 bg-stone-50 rounded-2xl p-6">
-              <div className="size-10 rounded-full bg-stone-100 ring-1 ring-stone-200 flex items-center justify-center mb-4">
-                <span className="text-xs font-medium text-forest">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <h3 className="font-serif text-lg text-stone-900 mb-2">{b.h}</h3>
-              <p className="text-sm text-stone-700 leading-relaxed">{b.p}</p>
+            <div key={b.h}>
+              <p className="serif-display text-gold text-xl mb-4">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="serif-display text-2xl text-stone-900 mb-3">{b.h}</h3>
+              <p className="text-sm text-stone-700 leading-relaxed max-w-[32ch]">{b.p}</p>
             </div>
           ))}
         </div>
       </Section>
 
       {/* CHECKLIST */}
-      <Section tone="warm" eyebrow="Qualification Checklist" title="Who we&#39;re looking for.">
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <ul className="space-y-3">
+      <Section tone="warm" eyebrow="Who We Look For" title="Our standard, quietly held.">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <ul className="space-y-4">
             {CHECKLIST.map((c) => (
-              <li key={c} className="flex items-start gap-3 border-b border-stone-200 pb-3">
-                <span className="mt-1.5 size-4 rounded-full bg-forest text-stone-50 inline-flex items-center justify-center shrink-0">
-                  <svg className="size-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12l5 5 9-11" />
-                  </svg>
-                </span>
-                <span className="text-sm text-stone-900">{c}</span>
+              <li key={c} className="flex items-start gap-4 border-b border-stone-200 pb-4">
+                <span className="mt-1.5 size-1.5 rounded-full bg-gold shrink-0" />
+                <span className="text-base text-stone-900">{c}</span>
               </li>
             ))}
           </ul>
-          <div className="border border-stone-200 rounded-2xl p-8 bg-stone-50">
-            <p className="eyebrow text-gold mb-3">A quieter standard</p>
-            <p className="serif-display text-2xl text-stone-900 mb-4">
+          <div className="lg:pl-8">
+            <p className="eyebrow text-gold mb-4">A quieter standard</p>
+            <p className="serif-display text-3xl text-stone-900 leading-tight mb-6">
               &ldquo;We accept fewer than 3% of applicants — because our clients trust us to.&rdquo;
             </p>
-            <p className="text-sm text-stone-700 leading-relaxed">
-              Our vetting is rigorous, but it&apos;s the reason our clients return and our therapists
-              stay. If you take pride in your craft, we&apos;d love to hear from you.
+            <p className="text-stone-700 leading-relaxed max-w-[42ch]">
+              Our vetting is rigorous. It&apos;s the reason our clients return and our therapists
+              stay.
             </p>
           </div>
         </div>
       </Section>
 
-      {/* ONBOARDING TIMELINE */}
+      {/* ONBOARDING TIMELINE — softer */}
       <div id="onboarding" />
-      <Section eyebrow="Onboarding" title="From application to live in six steps.">
-
-        <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Section eyebrow="Onboarding" title="From application to live, in six quiet steps.">
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
           {ONBOARDING.map((s) => (
-            <li key={s.n} className="border border-stone-200 rounded-2xl bg-stone-50 p-6">
-              <p className="serif-display text-4xl text-gold mb-4">{s.n}</p>
-              <h3 className="font-serif text-lg text-stone-900 mb-2">{s.h}</h3>
-              <p className="text-sm text-stone-700 leading-relaxed">{s.p}</p>
+            <li key={s.n}>
+              <p className="serif-display text-gold text-xl mb-4">{s.n}</p>
+              <h3 className="serif-display text-2xl text-stone-900 mb-3">{s.h}</h3>
+              <p className="text-sm text-stone-700 leading-relaxed max-w-[28ch]">{s.p}</p>
             </li>
           ))}
         </ol>
       </Section>
 
-      {/* APPLICATION FORM */}
-      <section id="apply" className="bg-stone-100 py-24">
-        <div className="max-w-3xl mx-auto px-6">
-          <p className="eyebrow text-gold mb-3">Apply</p>
-          <h2 className="text-4xl serif-display text-stone-900 mb-4">Begin your application.</h2>
-          <p className="text-stone-700 mb-10 max-w-xl leading-relaxed">
-            Tell us about you — we&apos;ll be in touch within 3 working days.
+      {/* MULTI-STEP APPLICATION */}
+      <section id="apply" className="bg-stone-100 py-28 md:py-36">
+        <div className="max-w-2xl mx-auto px-6">
+          <p className="eyebrow text-gold mb-4">Apply</p>
+          <h2 className="serif-display text-4xl md:text-5xl text-stone-900 mb-4 text-balance">
+            Begin your application.
+          </h2>
+          <p className="text-stone-700 mb-12 max-w-[42ch] leading-relaxed">
+            Under two minutes. We&apos;ll respond within three working days.
           </p>
 
           {submitted ? (
-            <div className="border border-forest/30 bg-stone-50 rounded-2xl p-10 text-center">
-              <p className="serif-display text-3xl text-stone-900 mb-3">Thank you.</p>
-              <p className="text-stone-700 max-w-md mx-auto mb-6">
-                Your application has been received. Our team will review your profile and respond within
-                three working days.
+            <div className="bg-stone-50 p-12 md:p-16 text-center">
+              <p className="serif-display text-4xl text-stone-900 mb-4">Thank you.</p>
+              <p className="text-stone-700 max-w-md mx-auto mb-8 leading-relaxed">
+                Your application has been received. Our team will be in touch within three working
+                days.
               </p>
-              <Link to="/" className="text-sm text-forest underline underline-offset-8">
+              <Link
+                to="/"
+                className="text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
+              >
                 Back to home →
               </Link>
             </div>
           ) : (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
-              className="border border-stone-200 rounded-2xl bg-stone-50 p-8 grid sm:grid-cols-2 gap-5"
-            >
-              <ApplyField label="Full name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
-              <ApplyField label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
-              <ApplyField label="Phone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
-              <ApplyField label="Home postcode" value={form.postcode} onChange={(v) => setForm({ ...form, postcode: v })} />
-              <ApplyField label="Years of experience" value={form.experience} onChange={(v) => setForm({ ...form, experience: v })} />
-              <ApplyField label="Primary speciality" value={form.speciality} onChange={(v) => setForm({ ...form, speciality: v })} />
-              <div className="sm:col-span-2">
-                <ApplyField label="Qualifications (comma-separated)" value={form.qualifications} onChange={(v) => setForm({ ...form, qualifications: v })} />
+            <div className="bg-stone-50 p-8 md:p-12">
+              {/* Progress */}
+              <div className="mb-10">
+                <div className="flex items-center gap-3 mb-4">
+                  {STEPS.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-[2px] flex-1 transition-colors ${
+                        i <= step ? "bg-forest" : "bg-stone-200"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="eyebrow text-stone-500">
+                    Step {step + 1} of {STEPS.length}
+                  </p>
+                  <p className="eyebrow text-forest">{STEPS[step]}</p>
+                </div>
               </div>
-              <div className="sm:col-span-2">
-                <ApplyField label="Availability (days & hours)" value={form.availability} onChange={(v) => setForm({ ...form, availability: v })} />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block">
-                  <span className="eyebrow text-stone-500 block mb-2">About you</span>
-                  <textarea
-                    rows={4}
-                    value={form.about}
-                    onChange={(e) => setForm({ ...form, about: e.target.value })}
-                    className="w-full bg-stone-100 rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-forest resize-none"
-                    placeholder="Your approach, philosophy and what draws you to Lythe."
-                  />
-                </label>
-              </div>
-              <div className="sm:col-span-2 flex items-center justify-between mt-4">
-                <p className="text-xs text-stone-500 max-w-xs">
-                  By submitting, you agree to our{" "}
-                  <Link to="/privacy" className="underline underline-offset-4">privacy policy</Link>.
-                </p>
-                <button
-                  type="submit"
-                  className="bg-forest text-stone-50 px-8 py-4 rounded-full text-sm font-medium hover:brightness-110 transition"
-                >
-                  Submit Application
-                </button>
-              </div>
-            </form>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (step < STEPS.length - 1) {
+                    if (canAdvance) setStep(step + 1);
+                  } else {
+                    setSubmitted(true);
+                  }
+                }}
+                className="space-y-6"
+              >
+                {step === 0 && (
+                  <>
+                    <ApplyField
+                      label="Full name"
+                      value={form.name}
+                      onChange={(v) => setForm({ ...form, name: v })}
+                      required
+                    />
+                    <ApplyField
+                      label="Home postcode"
+                      value={form.postcode}
+                      onChange={(v) => setForm({ ...form, postcode: v })}
+                      placeholder="e.g. SW1A"
+                      required
+                    />
+                  </>
+                )}
+                {step === 1 && (
+                  <>
+                    <ApplyField
+                      label="Years of experience"
+                      value={form.experience}
+                      onChange={(v) => setForm({ ...form, experience: v })}
+                      placeholder="e.g. 5"
+                      required
+                    />
+                    <ApplyField
+                      label="Primary qualification"
+                      value={form.qualification}
+                      onChange={(v) => setForm({ ...form, qualification: v })}
+                      placeholder="e.g. Level 4 Sports Massage"
+                      required
+                    />
+                  </>
+                )}
+                {step === 2 && (
+                  <>
+                    <ApplyField
+                      label="Email"
+                      type="email"
+                      value={form.email}
+                      onChange={(v) => setForm({ ...form, email: v })}
+                      required
+                    />
+                    <ApplyField
+                      label="Phone"
+                      type="tel"
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                      required
+                    />
+                  </>
+                )}
+
+                <div className="flex items-center justify-between pt-6">
+                  {step > 0 ? (
+                    <button
+                      type="button"
+                      onClick={() => setStep(step - 1)}
+                      className="text-sm font-medium text-stone-600 hover:text-forest transition"
+                    >
+                      ← Back
+                    </button>
+                  ) : (
+                    <span />
+                  )}
+                  <button
+                    type="submit"
+                    disabled={!canAdvance}
+                    className="bg-forest text-stone-50 px-8 py-4 rounded-full text-sm font-medium hover:bg-gold transition disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    {step < STEPS.length - 1 ? "Continue" : "Submit Application"}
+                  </button>
+                </div>
+
+                {step === STEPS.length - 1 && (
+                  <p className="text-xs text-stone-500 pt-4">
+                    By submitting, you agree to our{" "}
+                    <Link to="/privacy" className="underline underline-offset-4">
+                      privacy policy
+                    </Link>
+                    .
+                  </p>
+                )}
+              </form>
+            </div>
           )}
         </div>
       </section>
@@ -243,21 +313,26 @@ function ApplyField({
   value,
   onChange,
   type = "text",
+  placeholder,
+  required,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
+  placeholder?: string;
+  required?: boolean;
 }) {
   return (
     <label className="block">
-      <span className="eyebrow text-stone-500 block mb-2">{label}</span>
+      <span className="eyebrow text-stone-500 block mb-3">{label}</span>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        required
-        className="w-full bg-stone-100 rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-forest"
+        placeholder={placeholder}
+        required={required}
+        className="w-full bg-transparent border-b border-stone-300 pb-3 text-lg outline-none focus:border-forest transition placeholder:text-stone-300"
       />
     </label>
   );
