@@ -7,12 +7,12 @@ export const BRAND = {
 };
 
 export const PRIMARY_NAV = [
-  { to: "/treatments", label: "Treatments" },
+  { to: "/treatments", label: "Services" },
   { to: "/therapists", label: "Therapists" },
-  { to: "/areas", label: "Areas" },
   { to: "/corporate", label: "Corporate" },
-  { to: "/membership", label: "Membership" },
-  { to: "/join-therapist", label: "Join as Therapist" },
+  { to: "/journal", label: "Journal" },
+  { to: "/shop", label: "Shop" },
+  { to: "/about", label: "Company" },
 ] as const;
 
 export const FOOTER_NAV = {
