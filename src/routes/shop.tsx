@@ -37,8 +37,8 @@ function ShopPage() {
               height={1500}
               className="w-full h-full object-cover"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={150}>
             <p className="eyebrow text-gold mb-4 flex items-center gap-3">
               Wellness Shop
               <span className="text-[10px] tracking-[0.22em] rounded-full bg-forest/10 text-forest px-3 py-1">
@@ -58,7 +58,7 @@ function ShopPage() {
             >
               Join the waitlist
             </Link>
-          </div>
+          </Reveal>
         </div>
       </Section>
     </SiteLayout>
