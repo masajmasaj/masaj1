@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { SiteNav } from "./SiteNav";
 import { SiteFooter } from "./SiteFooter";
+import { StickyBookCta } from "./StickyBookCta";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <SiteNav />
       <main className="pt-20 flex-1">{children}</main>
       <SiteFooter />
+      <StickyBookCta />
     </div>
   );
 }
