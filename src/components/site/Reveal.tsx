@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createElement, useEffect, useRef, useState, type ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
@@ -42,21 +42,16 @@ export function Reveal({ children, className = "", delay = 0, as = "div", y = 16
     return () => io.disconnect();
   }, []);
 
-  const Tag = as as keyof JSX.IntrinsicElements;
   const style = reduced
     ? undefined
     : {
-        transition: "opacity 900ms cubic-bezier(0.22,0.61,0.36,1), transform 900ms cubic-bezier(0.22,0.61,0.36,1)",
+        transition:
+          "opacity 900ms cubic-bezier(0.22,0.61,0.36,1), transform 900ms cubic-bezier(0.22,0.61,0.36,1)",
         transitionDelay: `${delay}ms`,
         opacity: shown ? 1 : 0,
         transform: shown ? "translateY(0)" : `translateY(${y}px)`,
         willChange: "opacity, transform",
       };
 
-  return (
-    // @ts-expect-error dynamic tag
-    <Tag ref={ref} className={className} style={style}>
-      {children}
-    </Tag>
-  );
+  return createElement(as, { ref, className, style }, children);
 }
