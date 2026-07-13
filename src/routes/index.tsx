@@ -148,34 +148,42 @@ function HomePage() {
           alt="A private London treatment room at golden hour, dressed with fresh linen and a single candle"
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/20 to-stone-900/85" />
         <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-20 md:pb-28">
-          <p className="eyebrow text-gold-soft mb-6 flex items-center gap-3">
-            <span className="h-px w-8 bg-gold-soft" />
-            Lythe · London
-          </p>
-          <h1 className="serif-display text-[2.75rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-[18ch] text-balance">
-            Luxury Mobile Massage &amp; Wellness Across London.
-          </h1>
-          <p className="mt-8 max-w-[46ch] text-base md:text-lg text-stone-200/90 leading-relaxed">
-            Considered care, brought to your home, hotel or office by vetted London therapists.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/booking"
-              className="bg-stone-50 text-stone-900 px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-gold hover:text-stone-50 transition"
-            >
-              Book Now
-            </Link>
-            <Link
-              to="/treatments"
-              className="text-sm font-medium text-stone-50 border-b border-stone-50/60 pb-1 hover:border-gold hover:text-gold-soft transition"
-            >
-              Explore Treatments →
-            </Link>
-          </div>
+          <Reveal delay={100}>
+            <p className="eyebrow text-gold-soft mb-6 flex items-center gap-3">
+              <span className="h-px w-8 bg-gold-soft" />
+              Lythe · London
+            </p>
+          </Reveal>
+          <Reveal delay={250} y={24}>
+            <h1 className="serif-display text-[2.75rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-[18ch] text-balance">
+              Luxury Mobile Massage Across London.
+            </h1>
+          </Reveal>
+          <Reveal delay={500}>
+            <p className="mt-8 max-w-[46ch] text-base md:text-lg text-stone-200/90 leading-relaxed">
+              Trusted therapists for home, hotel, office and corporate wellness.
+            </p>
+          </Reveal>
+          <Reveal delay={700}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                to="/booking"
+                className="bg-stone-50 text-stone-900 px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-gold hover:text-stone-50 transition"
+              >
+                Book Now
+              </Link>
+              <Link
+                to="/treatments"
+                className="text-sm font-medium text-stone-50 border-b border-stone-50/60 pb-1 hover:border-gold hover:text-gold-soft transition"
+              >
+                Explore Treatments →
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
