@@ -1,15 +1,14 @@
 const ITEMS = [
-  "Qualified Therapists",
-  "Home · Hotel · Office",
-  "London-Wide Coverage",
-  "Secure Booking Ready",
-  "Wellness-Led Care",
+  "Verified Therapists",
+  "Professional Insurance",
+  "Safe & Private Booking",
+  "Transparent Pricing",
 ];
 
 export function TrustBand() {
   return (
     <div className="bg-forest py-6 text-stone-100">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {ITEMS.map((label) => (
           <div key={label} className="flex items-center gap-2 min-w-0">
             <svg className="size-4 shrink-0 text-gold" fill="currentColor" viewBox="0 0 20 20">
