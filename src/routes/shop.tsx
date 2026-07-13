@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Section } from "@/components/site/Section";
+import { Reveal } from "@/components/site/Reveal";
 import shopImg from "@/assets/shop-preview.jpg";
 
 const TITLE = "Wellness Shop — Coming Soon | Lythe";
@@ -24,9 +25,10 @@ export const Route = createFileRoute("/shop")({
 function ShopPage() {
   return (
     <SiteLayout>
-      <Section>
+      <Section reveal={false}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-          <div className="rounded-2xl overflow-hidden ring-1 ring-black/5 aspect-[4/5]">
+          <Reveal className="rounded-2xl overflow-hidden ring-1 ring-black/5 aspect-[4/5]">
+
             <img
               src={shopImg}
               alt="Massage oils and wellness products"
