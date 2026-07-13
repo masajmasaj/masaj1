@@ -480,7 +480,187 @@ function HomePage() {
         </div>
       </section>
 
-      {/* 9. FINAL CTA — dark editorial */}
+      {/* THERAPIST PREVIEW — max 3 */}
+      <section className="bg-stone-50 py-28 md:py-40">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-20">
+              <div className="max-w-[46ch]">
+                <p className="eyebrow text-gold mb-5">The Practitioners</p>
+                <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
+                  Hands you can trust, chosen with care.
+                </h2>
+              </div>
+              <Link
+                to="/therapists"
+                className="text-sm font-medium text-stone-900 border-b border-stone-900/40 pb-1 hover:border-gold hover:text-gold transition whitespace-nowrap"
+              >
+                Meet the collective →
+              </Link>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            {THERAPISTS.slice(0, 3).map((t, i) => (
+              <Reveal key={t.slug} delay={i * 120}>
+                <article className="group bg-stone-50">
+                  <Link
+                    to="/therapists/$slug"
+                    params={{ slug: t.slug }}
+                    className="block relative overflow-hidden aspect-[4/5] mb-6 bg-stone-200"
+                  >
+                    <img
+                      src={t.photo}
+                      alt={`Portrait of ${t.name}`}
+                      loading="lazy"
+                      width={800}
+                      height={1000}
+                      className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                    />
+                  </Link>
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="serif-display text-2xl text-stone-900">{t.name}</h3>
+                    {t.verified && (
+                      <span
+                        aria-label="Verified therapist"
+                        title="Verified"
+                        className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-forest text-stone-50 text-[10px]"
+                      >
+                        ✓
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-stone-700 leading-relaxed mb-3 max-w-[38ch]">
+                    {t.headline}
+                  </p>
+                  <p className="text-xs tracking-[0.14em] uppercase text-stone-500 mb-3">
+                    {t.specialities.slice(0, 3).join(" · ")}
+                  </p>
+                  <div className="flex items-center gap-3 text-xs text-stone-600 mb-4">
+                    <span className="inline-flex items-center gap-1.5 text-gold">
+                      <StarRating value={t.rating} />
+                      <span className="text-stone-700 ml-1">{t.rating.toFixed(1)}</span>
+                    </span>
+                    <span className="text-stone-300">·</span>
+                    <span>{t.languages.slice(0, 2).join(", ")}</span>
+                  </div>
+                  <p className="text-xs text-stone-500 mb-5">
+                    Next available <span className="text-stone-800">{t.nextAvailable}</span>
+                  </p>
+                  <div className="flex items-center gap-5 text-sm">
+                    <Link
+                      to="/booking"
+                      className="font-medium text-forest border-b border-forest/40 pb-0.5 hover:border-gold hover:text-gold transition"
+                    >
+                      Book
+                    </Link>
+                    <Link
+                      to="/therapists/$slug"
+                      params={{ slug: t.slug }}
+                      className="font-medium text-stone-700 border-b border-stone-300 pb-0.5 hover:border-gold hover:text-gold transition"
+                    >
+                      View profile
+                    </Link>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CLIENT REVIEWS */}
+      <section className="bg-stone-100 py-28 md:py-40 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal>
+            <div className="max-w-[46ch] mb-16 md:mb-20">
+              <p className="eyebrow text-gold mb-5">In Their Words</p>
+              <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
+                A quiet standard, felt in every visit.
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {REVIEWS.slice(0, 3).map((r, i) => (
+              <Reveal key={r.id} delay={i * 120}>
+                <figure className="h-full bg-stone-50 p-8 md:p-10 flex flex-col">
+                  <StarRating value={r.rating} size={16} />
+                  <blockquote className="serif-display text-xl md:text-2xl text-stone-900 leading-snug mt-5 mb-8 flex-1 text-balance">
+                    “{r.body}”
+                  </blockquote>
+                  <figcaption className="text-xs tracking-[0.14em] uppercase text-stone-500">
+                    <span className="text-stone-800">{r.clientName}</span>
+                    <span className="text-stone-400"> · </span>
+                    {r.clientArea}
+                    <span className="text-stone-400"> · </span>
+                    <span className="text-stone-600 normal-case tracking-normal">{r.treatment}</span>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Subtle marquee row of shorter praise */}
+          <Reveal delay={200}>
+            <div className="mt-16 relative overflow-hidden py-4 border-y border-stone-200/70">
+              <div className="flex gap-14 whitespace-nowrap animate-marquee w-max">
+                {[...REVIEWS, ...REVIEWS].map((r, i) => (
+                  <span
+                    key={`${r.id}-${i}`}
+                    className="text-sm text-stone-600 inline-flex items-center gap-3"
+                  >
+                    <span className="text-gold">★</span>
+                    <span className="italic">“{r.body.slice(0, 70)}{r.body.length > 70 ? "…" : ""}”</span>
+                    <span className="text-stone-400">— {r.clientName}, {r.clientArea}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* JOIN OUR TEAM PREVIEW */}
+      <section className="bg-stone-50 py-28 md:py-40">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <Reveal className="lg:col-span-6 relative aspect-[5/4] overflow-hidden rounded-sm">
+            <img
+              src={therapistImg}
+              alt="A Lythe therapist preparing for a visit"
+              loading="lazy"
+              width={1200}
+              height={1000}
+              className="w-full h-full object-cover"
+            />
+          </Reveal>
+          <Reveal delay={150} className="lg:col-span-6 lg:pl-8">
+            <p className="eyebrow text-gold mb-5">For Therapists</p>
+            <h2 className="serif-display text-4xl md:text-5xl text-stone-900 mb-6 text-balance">
+              Build your practice with confidence.
+            </h2>
+            <p className="text-stone-700 leading-relaxed max-w-[46ch]">
+              Flexible work, professional support, and a trusted London wellness brand behind you.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                to="/join-therapist"
+                className="bg-stone-900 text-stone-50 px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-forest transition"
+              >
+                Apply in 2 Minutes
+              </Link>
+              <Link
+                to="/join-therapist"
+                className="text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
+              >
+                Explore therapist benefits →
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+
       <section className="bg-forest text-stone-100">
         <div className="max-w-7xl mx-auto px-6 py-32 md:py-48 text-center">
           <p className="eyebrow text-gold-soft mb-8 inline-flex items-center gap-3">
