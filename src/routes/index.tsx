@@ -142,43 +142,45 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* 1. CINEMATIC HERO */}
-      <section className="relative -mt-20 h-[100svh] min-h-[720px] max-h-[960px] w-full overflow-hidden text-stone-50">
+      <section className="relative -mt-20 h-[100svh] min-h-[640px] max-h-[980px] w-full overflow-hidden text-stone-50">
         <img
           src={heroImg}
-          alt="A Lythe therapist treating a client on a professional massage table in a bright London home"
+          alt="A Lythe therapist giving a back massage to a client on a professional massage table in an elegant London home"
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center] sm:object-[60%_center] lg:object-center animate-ken-burns"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/20 to-stone-900/85" />
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-20 md:pb-28">
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/55 via-stone-900/25 to-stone-900/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/70 via-stone-900/25 to-transparent" />
+        <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-24 md:pb-32">
           <Reveal delay={100}>
-            <p className="eyebrow text-gold-soft mb-6 flex items-center gap-3">
+            <p className="eyebrow text-gold-soft mb-7 flex items-center gap-3">
               <span className="h-px w-8 bg-gold-soft" />
-              Lythe · London
+              London · Mobile Massage
             </p>
           </Reveal>
           <Reveal delay={250} y={24}>
-            <h1 className="serif-display text-[2.75rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-[18ch] text-balance">
+            <h1 className="serif-display text-[3rem] leading-[0.98] sm:text-6xl md:text-7xl lg:text-[6rem] max-w-[16ch] text-balance drop-shadow-[0_2px_24px_rgba(20,20,15,0.35)]">
               Luxury Mobile Massage Across London.
             </h1>
           </Reveal>
           <Reveal delay={500}>
-            <p className="mt-8 max-w-[46ch] text-base md:text-lg text-stone-200/90 leading-relaxed">
+            <p className="mt-7 md:mt-8 max-w-[42ch] text-base md:text-lg text-stone-100/90 leading-relaxed">
               Trusted therapists for home, hotel, office and corporate wellness.
             </p>
           </Reveal>
           <Reveal delay={700}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-7">
               <Link
                 to="/booking"
-                className="bg-stone-50 text-stone-900 px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-gold hover:text-stone-50 transition"
+                className="inline-flex items-center justify-center bg-stone-50 text-stone-900 px-9 py-[1.15rem] rounded-full text-[0.9375rem] font-semibold tracking-wide shadow-[0_20px_50px_-24px_rgba(20,20,15,0.9)] hover:bg-gold hover:text-stone-50 transition"
               >
                 Book Now
               </Link>
               <Link
                 to="/treatments"
-                className="text-sm font-medium text-stone-50 border-b border-stone-50/60 pb-1 hover:border-gold hover:text-gold-soft transition"
+                className="self-start sm:self-auto text-sm font-medium text-stone-50 border-b border-stone-50/50 pb-1 hover:border-gold hover:text-gold-soft transition"
               >
                 Explore Treatments →
               </Link>
@@ -186,6 +188,7 @@ function HomePage() {
           </Reveal>
         </div>
       </section>
+
 
       {/* Elegant booking widget — floating on stone */}
       <section className="bg-stone-50">
