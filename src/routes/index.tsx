@@ -70,7 +70,7 @@ const SERVICE_BLOCKS = [
     eyebrow: "01 — At Home",
     title: "Home Massage",
     body: "A private treatment room, set up quietly in your own space. Warmed oils, fresh linen, and a therapist chosen for the way you like to be worked on.",
-    image: heroSanctuary,
+    image: serviceHome,
     to: "/booking",
     cta: "Book a home visit",
   },
@@ -383,7 +383,7 @@ function HomePage() {
             <Link to="/knowledge" className="group lg:col-span-7 block">
               <div className="relative aspect-[16/10] overflow-hidden mb-8 bg-stone-200">
                 <img
-                  src={heroSanctuary}
+                  src={serviceHome}
                   alt="Journal lead"
                   loading="lazy"
                   width={1400}
