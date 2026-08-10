@@ -8,11 +8,11 @@ import { BRAND } from "@/lib/site-config";
 import { TREATMENTS } from "@/lib/treatments";
 import { THERAPISTS } from "@/lib/therapists";
 import { REVIEWS } from "@/lib/reviews";
-import heroImg from "@/assets/hero-cinematic.jpg";
-import heroSanctuary from "@/assets/hero-sanctuary.jpg";
-import serviceHotel from "@/assets/service-hotel.jpg";
-import serviceCorporate from "@/assets/service-corporate.jpg";
-import serviceSports from "@/assets/service-sports.jpg";
+import heroImg from "@/assets/hero-massage.jpg";
+import serviceHome from "@/assets/service-home-massage.jpg";
+import serviceHotel from "@/assets/service-hotel-massage.jpg";
+import serviceCorporate from "@/assets/service-corporate-massage.jpg";
+import serviceSports from "@/assets/service-sports-massage.jpg";
 import therapistImg from "@/assets/therapist-portrait.jpg";
 import shopImg from "@/assets/shop-preview.jpg";
 
@@ -70,7 +70,7 @@ const SERVICE_BLOCKS = [
     eyebrow: "01 — At Home",
     title: "Home Massage",
     body: "A private treatment room, set up quietly in your own space. Warmed oils, fresh linen, and a therapist chosen for the way you like to be worked on.",
-    image: heroSanctuary,
+    image: serviceHome,
     to: "/booking",
     cta: "Book a home visit",
   },
@@ -145,7 +145,7 @@ function HomePage() {
       <section className="relative -mt-20 h-[100svh] min-h-[720px] max-h-[960px] w-full overflow-hidden text-stone-50">
         <img
           src={heroImg}
-          alt="A private London treatment room at golden hour, dressed with fresh linen and a single candle"
+          alt="A Lythe therapist treating a client on a professional massage table in a bright London home"
           width={1920}
           height={1280}
           className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
@@ -383,7 +383,7 @@ function HomePage() {
             <Link to="/knowledge" className="group lg:col-span-7 block">
               <div className="relative aspect-[16/10] overflow-hidden mb-8 bg-stone-200">
                 <img
-                  src={heroSanctuary}
+                  src={serviceHome}
                   alt="Journal lead"
                   loading="lazy"
                   width={1400}
