@@ -4,7 +4,7 @@ import reflexology from "@/assets/treatment-reflexology.jpg";
 import hotStone from "@/assets/treatment-hot-stone.jpg";
 import sports from "@/assets/treatment-sports.jpg";
 import pregnancy from "@/assets/treatment-pregnancy.jpg";
-import hero from "@/assets/hero-cinematic.jpg";
+import hero from "@/assets/hero-massage.jpg";
 
 export type JournalCategorySlug =
   | "massage-guides"

@@ -145,7 +145,7 @@ function HomePage() {
       <section className="relative -mt-20 h-[100svh] min-h-[720px] max-h-[960px] w-full overflow-hidden text-stone-50">
         <img
           src={heroImg}
-          alt="A private London treatment room at golden hour, dressed with fresh linen and a single candle"
+          alt="A Lythe therapist treating a client on a professional massage table in a bright London home"
           width={1920}
           height={1280}
           className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
