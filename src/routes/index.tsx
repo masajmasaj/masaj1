@@ -8,11 +8,11 @@ import { BRAND } from "@/lib/site-config";
 import { TREATMENTS } from "@/lib/treatments";
 import { THERAPISTS } from "@/lib/therapists";
 import { REVIEWS } from "@/lib/reviews";
-import heroImg from "@/assets/hero-cinematic.jpg";
-import heroSanctuary from "@/assets/hero-sanctuary.jpg";
-import serviceHotel from "@/assets/service-hotel.jpg";
-import serviceCorporate from "@/assets/service-corporate.jpg";
-import serviceSports from "@/assets/service-sports.jpg";
+import heroImg from "@/assets/hero-massage.jpg";
+import serviceHome from "@/assets/service-home-massage.jpg";
+import serviceHotel from "@/assets/service-hotel-massage.jpg";
+import serviceCorporate from "@/assets/service-corporate-massage.jpg";
+import serviceSports from "@/assets/service-sports-massage.jpg";
 import therapistImg from "@/assets/therapist-portrait.jpg";
 import shopImg from "@/assets/shop-preview.jpg";
 
