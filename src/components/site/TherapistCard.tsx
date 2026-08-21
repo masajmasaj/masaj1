@@ -14,13 +14,14 @@ export function TherapistCard({ therapist }: { therapist: Therapist }) {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
         {t.verified && (
-          <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-stone-50/95 backdrop-blur-sm text-forest text-[10px] tracking-[0.18em] uppercase font-semibold rounded-full px-3 py-1.5 ring-1 ring-stone-200">
+          <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-forest text-stone-50 text-[10px] tracking-[0.18em] uppercase font-semibold rounded-full px-3 py-1.5 shadow-[0_10px_24px_-14px_rgba(20,20,15,0.9)]">
             <svg className="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" />
             </svg>
             Verified
           </span>
         )}
+
         <span className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-stone-900 bg-stone-50/95 backdrop-blur-sm rounded-full px-3 py-1.5 ring-1 ring-stone-200">
           <span className="inline-flex items-center gap-1.5">
             <StarRating value={t.rating} />

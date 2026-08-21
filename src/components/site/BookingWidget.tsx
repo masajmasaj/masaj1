@@ -1,42 +1,59 @@
 import { TREATMENTS } from "@/lib/treatments";
 
+const REASSURANCE = [
+  "Verified, insured therapists",
+  "No payment until confirmed",
+  "Free cancellation up to 24h",
+];
+
 export function BookingWidget() {
   return (
-    <form
-      onSubmit={(e) => e.preventDefault()}
-      className="bg-stone-50 grid grid-cols-1 md:grid-cols-[1.1fr_1.1fr_1fr_auto] items-stretch"
-    >
-      <Field label="Location">
-        <input
-          type="text"
-          placeholder="London postcode"
-          className="bg-transparent outline-none text-sm font-medium placeholder:text-stone-400 w-full"
-        />
-      </Field>
-      <Field label="Treatment" bordered>
-        <select className="bg-transparent outline-none text-sm font-medium appearance-none w-full text-stone-900">
-          {TREATMENTS.slice(0, 8).map((t) => (
-            <option key={t.slug}>{t.name}</option>
-          ))}
-        </select>
-      </Field>
-      <Field label="Date" bordered>
-        <input
-          type="date"
-          className="bg-transparent outline-none text-sm font-medium w-full text-stone-900"
-        />
-      </Field>
-      <div className="p-2 md:p-3 md:pl-1 flex">
-        <button
-          type="submit"
-          className="w-full md:w-auto bg-forest text-stone-50 font-medium text-sm px-8 py-4 md:py-3 rounded-full hover:bg-gold transition-colors tracking-wide"
-        >
-          Check Availability
-        </button>
-      </div>
-    </form>
+    <div>
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="bg-stone-50 grid grid-cols-1 md:grid-cols-[1.1fr_1.1fr_1fr_auto] items-stretch"
+      >
+        <Field label="Location">
+          <input
+            type="text"
+            placeholder="London postcode"
+            className="bg-transparent outline-none text-sm font-medium placeholder:text-stone-400 w-full"
+          />
+        </Field>
+        <Field label="Treatment" bordered>
+          <select className="bg-transparent outline-none text-sm font-medium appearance-none w-full text-stone-900">
+            {TREATMENTS.slice(0, 8).map((t) => (
+              <option key={t.slug}>{t.name}</option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Date" bordered>
+          <input
+            type="date"
+            className="bg-transparent outline-none text-sm font-medium w-full text-stone-900"
+          />
+        </Field>
+        <div className="p-2 md:p-3 md:pl-1 flex">
+          <button
+            type="submit"
+            className="w-full md:w-auto bg-forest text-stone-50 font-semibold text-sm px-9 py-4 md:py-3 rounded-full shadow-[0_16px_36px_-20px_rgba(20,20,15,0.9)] hover:bg-gold transition-colors tracking-wide"
+          >
+            Check Availability
+          </button>
+        </div>
+      </form>
+      <ul className="bg-stone-100/70 border-t border-stone-200/80 px-6 md:px-8 py-3.5 flex flex-wrap items-center gap-x-7 gap-y-2">
+        {REASSURANCE.map((r) => (
+          <li key={r} className="flex items-center gap-2 text-[11px] md:text-xs text-stone-600">
+            <span className="size-1.5 rounded-full bg-gold" aria-hidden />
+            {r}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
+
 
 function Field({
   label,
