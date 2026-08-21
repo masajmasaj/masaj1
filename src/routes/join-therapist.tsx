@@ -112,7 +112,7 @@ function JoinTherapistPage() {
           <div className="flex flex-wrap gap-4">
             <a
               href="#apply"
-              className="bg-stone-50 text-stone-900 px-8 py-4 rounded-full text-sm font-medium hover:bg-gold hover:text-stone-50 transition"
+              className="bg-stone-50 text-stone-900 px-9 py-4 rounded-full text-sm font-semibold shadow-[0_20px_50px_-24px_rgba(0,0,0,0.9)] hover:bg-gold hover:text-stone-50 transition"
             >
               Apply Now
             </a>
@@ -123,8 +123,21 @@ function JoinTherapistPage() {
               How it works →
             </a>
           </div>
+          <ul className="mt-12 flex flex-wrap gap-x-10 gap-y-3 border-t border-stone-100/15 pt-8">
+            {[
+              "Free to apply · no obligation",
+              "Transparent pay · no hidden fees",
+              "Every therapist DBS checked & insured",
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-2.5 text-xs text-stone-300">
+                <span className="size-1.5 rounded-full bg-gold" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
+
 
       {/* BENEFITS — softer */}
       <Section eyebrow="Why Lythe" title="A better place to practise.">
