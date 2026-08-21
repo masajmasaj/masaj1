@@ -57,9 +57,15 @@ export function TherapistCard({ therapist }: { therapist: Therapist }) {
         </dl>
 
         <div className="mt-auto flex items-center justify-between pt-4 border-t border-stone-200">
-          <span className="text-xs font-semibold tracking-wider text-forest">
-            FROM £{t.priceFrom}
+          <span className="min-w-0">
+            <span className="block text-xs font-semibold tracking-wider text-forest">
+              FROM £{t.priceFrom}
+            </span>
+            <span className="mt-1 block text-[10px] uppercase tracking-[0.16em] text-stone-500">
+              DBS checked · Insured
+            </span>
           </span>
+
           <div className="flex gap-2 text-xs font-medium">
             <Link
               to="/therapists/$slug"
