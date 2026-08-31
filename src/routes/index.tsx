@@ -14,7 +14,7 @@ import serviceHotel from "@/assets/service-hotel-massage.jpg";
 import serviceCorporate from "@/assets/service-corporate-massage.jpg";
 import serviceSports from "@/assets/service-sports-massage.jpg";
 import therapistImg from "@/assets/therapist-portrait.jpg";
-import shopImg from "@/assets/shop-preview.jpg";
+
 
 const HOMEPAGE_TITLE = "Luxury Mobile Massage & Wellness in London | Lythe";
 const HOMEPAGE_DESCRIPTION =
