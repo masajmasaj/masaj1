@@ -15,7 +15,6 @@ import serviceCorporate from "@/assets/service-corporate-massage.jpg";
 import serviceSports from "@/assets/service-sports-massage.jpg";
 import therapistImg from "@/assets/therapist-portrait.jpg";
 
-
 const HOMEPAGE_TITLE = "Luxury Mobile Massage & Wellness in London | Lythe";
 const HOMEPAGE_DESCRIPTION =
   "Professional mobile massage and wellness delivered across London — home, hotel, office and corporate. Vetted UK therapists. Aman-level care, brought to you.";
@@ -155,7 +154,7 @@ function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-stone-900/70 via-stone-900/25 to-transparent" />
         <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-24 md:pb-32">
           <Reveal delay={100}>
-            <p className="eyebrow text-gold-soft mb-7 flex items-center gap-3">
+            <p className="eyebrow text-gold-soft mb-6 flex items-center gap-3">
               <span className="h-px w-8 bg-gold-soft" />
               London · Mobile Massage
             </p>
@@ -165,22 +164,22 @@ function HomePage() {
               Luxury Mobile Massage Across London.
             </h1>
           </Reveal>
-          <Reveal delay={500}>
-            <p className="mt-7 md:mt-8 max-w-[42ch] text-base md:text-lg text-stone-100/90 leading-relaxed">
+          <Reveal delay={450}>
+            <p className="mt-6 md:mt-7 max-w-[42ch] text-base md:text-lg text-stone-100/90 leading-relaxed">
               Trusted therapists for home, hotel, office and corporate wellness.
             </p>
           </Reveal>
-          <Reveal delay={700}>
-            <div className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-7">
+          <Reveal delay={620}>
+            <div className="mt-9 md:mt-11 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
               <Link
                 to="/booking"
-                className="inline-flex items-center justify-center bg-stone-50 text-stone-900 px-9 py-[1.15rem] rounded-full text-[0.9375rem] font-semibold tracking-wide shadow-[0_20px_50px_-24px_rgba(20,20,15,0.9)] hover:bg-gold hover:text-stone-50 transition"
+                className="inline-flex items-center justify-center bg-stone-50 text-stone-900 px-10 py-[1.15rem] rounded-full text-[0.9375rem] font-semibold tracking-wide shadow-[0_20px_50px_-24px_rgba(20,20,15,0.9)] hover:bg-gold hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 transition"
               >
                 Book Now
               </Link>
               <Link
                 to="/treatments"
-                className="self-start sm:self-auto text-sm font-medium text-stone-50 border-b border-stone-50/50 pb-1 hover:border-gold hover:text-gold-soft transition"
+                className="self-start sm:self-auto text-sm font-medium text-stone-50/90 border-b border-stone-50/40 pb-1 hover:border-gold hover:text-gold-soft transition"
               >
                 Explore Treatments →
               </Link>
@@ -188,7 +187,6 @@ function HomePage() {
           </Reveal>
         </div>
       </section>
-
 
       {/* Elegant booking widget — floating on stone */}
       <section className="bg-stone-50">
@@ -199,15 +197,13 @@ function HomePage() {
         </div>
       </section>
 
-
-
-      <div className="bg-stone-50 pt-16 md:pt-20">
+      <div className="bg-stone-50 pt-14 md:pt-16">
         <TrustBand />
       </div>
 
-      {/* 3. EDITORIAL SERVICE BLOCKS — alternating full-bleed */}
-      <section className="bg-stone-50 py-28 md:py-40">
-        <div className="max-w-7xl mx-auto px-6 mb-20 md:mb-28 max-w-[52ch]">
+      {/* 2. EDITORIAL SERVICE BLOCKS — alternating full-bleed */}
+      <section className="bg-stone-50 py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 max-w-[52ch]">
           <p className="eyebrow text-gold mb-5">The Service</p>
           <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
             One collective, every setting.
@@ -218,7 +214,7 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="space-y-28 md:space-y-40">
+        <div className="space-y-20 md:space-y-28">
           {SERVICE_BLOCKS.map((block, idx) => {
             const reverse = idx % 2 === 1;
             return (
@@ -240,10 +236,12 @@ function HomePage() {
                 </div>
                 <div className={`lg:col-span-5 ${reverse ? "lg:order-1 lg:pr-8" : "lg:pl-8"}`}>
                   <p className="eyebrow text-gold mb-5">{block.eyebrow}</p>
-                  <h3 className="serif-display text-4xl md:text-5xl text-stone-900 mb-6 text-balance">
+                  <h3 className="serif-display text-4xl md:text-5xl text-stone-900 mb-5 text-balance">
                     {block.title}
                   </h3>
-                  <p className="text-stone-700 leading-relaxed text-lg max-w-[42ch]">{block.body}</p>
+                  <p className="text-stone-700 leading-relaxed text-base md:text-lg max-w-[42ch]">
+                    {block.body}
+                  </p>
                   <Link
                     to={block.to}
                     className="mt-8 inline-flex items-center gap-3 text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
@@ -258,10 +256,10 @@ function HomePage() {
         </div>
       </section>
 
-      {/* 4. SIGNATURE TREATMENTS — editorial 3-up */}
-      <section className="bg-stone-100 py-28 md:py-40">
+      {/* 3. SIGNATURE TREATMENTS — editorial 3-up */}
+      <section className="bg-stone-100 py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-20">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
             <div className="max-w-[48ch]">
               <p className="eyebrow text-gold mb-5">Signature Treatments</p>
               <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
@@ -276,13 +274,9 @@ function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 md:gap-y-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 md:gap-y-16">
             {signature.map((t) => (
-              <Link
-                key={t.slug}
-                to="/treatments"
-                className="group block"
-              >
+              <Link key={t.slug} to="/treatments" className="group block">
                 <div className="relative overflow-hidden aspect-[4/5] mb-6 bg-stone-200">
                   <img
                     src={t.image}
@@ -305,19 +299,19 @@ function HomePage() {
         </div>
       </section>
 
-      {/* 5. HOW IT WORKS — minimal editorial */}
-      <section className="bg-stone-50 py-28 md:py-40">
+      {/* 4. HOW IT WORKS — minimal editorial */}
+      <section className="bg-stone-50 py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-[42ch] mb-16 md:mb-20">
+          <div className="max-w-[42ch] mb-14 md:mb-18">
             <p className="eyebrow text-gold mb-5">The Journey</p>
             <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
               Choose. Match. Book. Relax.
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-14 gap-x-10 border-t border-stone-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-10 border-t border-stone-200">
             {STEPS.map((s) => (
               <div key={s.n} className="pt-10 lg:pr-8 lg:border-r last:border-r-0 border-stone-200/60">
-                <p className="serif-display text-gold text-2xl mb-6">{s.n}</p>
+                <p className="eyebrow text-gold mb-5">{s.n}</p>
                 <h3 className="serif-display text-2xl md:text-3xl text-stone-900 mb-3">{s.h}</h3>
                 <p className="text-sm text-stone-700 leading-relaxed max-w-[28ch]">{s.p}</p>
               </div>
@@ -326,168 +320,11 @@ function HomePage() {
         </div>
       </section>
 
-      {/* 6. FOUNDER STORY */}
-      <section className="bg-stone-100 py-28 md:py-40">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          <div className="lg:col-span-5 relative aspect-[4/5] overflow-hidden rounded-sm">
-            <img
-              src={therapistImg}
-              alt="A portrait of Lythe's founding therapist"
-              loading="lazy"
-              width={1000}
-              height={1250}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="lg:col-span-7 lg:pl-8">
-            <p className="eyebrow text-gold mb-5">Our Story</p>
-            <h2 className="serif-display text-4xl md:text-5xl text-stone-900 mb-8 text-balance">
-              Inspired by Filipino hospitality. Designed for modern London wellness.
-            </h2>
-            <p className="text-lg text-stone-700 leading-relaxed max-w-[52ch]">
-              Lythe was founded on a simple belief — that care, when offered with real warmth and
-              real skill, is one of the last great luxuries. We built a collective of London
-              therapists to bring that quiet standard into the home, the suite and the office.
-            </p>
-            <p className="mt-6 text-stone-700 leading-relaxed max-w-[52ch]">
-              No spa lobby. No hurry. Only the treatment, exactly as it should be.
-            </p>
-            <Link
-              to="/about"
-              className="mt-10 inline-flex items-center gap-3 text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
-            >
-              Read the full story
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. THE JOURNAL — magazine style */}
-      <section className="bg-stone-50 py-28 md:py-40">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-20">
-            <div className="max-w-[46ch]">
-              <p className="eyebrow text-gold mb-5">The Journal</p>
-              <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
-                Field notes from our practice.
-              </h2>
-            </div>
-            <Link
-              to="/knowledge"
-              className="text-sm font-medium text-stone-900 border-b border-stone-900/40 pb-1 hover:border-gold hover:text-gold transition whitespace-nowrap"
-            >
-              Read the journal →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-            {/* Lead article */}
-            <Link to="/knowledge" className="group lg:col-span-7 block">
-              <div className="relative aspect-[16/10] overflow-hidden mb-8 bg-stone-200">
-                <img
-                  src={serviceHome}
-                  alt="Journal lead"
-                  loading="lazy"
-                  width={1400}
-                  height={900}
-                  className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
-                />
-              </div>
-              <p className="eyebrow text-gold mb-3">{JOURNAL[0].tag}</p>
-              <h3 className="serif-display text-3xl md:text-5xl text-stone-900 mb-4 text-balance max-w-[24ch]">
-                {JOURNAL[0].h}
-              </h3>
-              <p className="text-stone-700 leading-relaxed max-w-[52ch]">{JOURNAL[0].p}</p>
-            </Link>
-
-            <div className="lg:col-span-5 flex flex-col divide-y divide-stone-200">
-              {JOURNAL.slice(1).map((a) => (
-                <Link
-                  key={a.h}
-                  to="/knowledge"
-                  className="group py-8 first:pt-0 last:pb-0 block"
-                >
-                  <p className="eyebrow text-gold mb-3">{a.tag}</p>
-                  <h4 className="serif-display text-2xl md:text-3xl text-stone-900 mb-3 group-hover:text-forest transition-colors">
-                    {a.h}
-                  </h4>
-                  <p className="text-sm text-stone-700 leading-relaxed">{a.p}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. ECOSYSTEM — Membership / Gift / Shop */}
-      <section className="bg-stone-100 py-28 md:py-40">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-[46ch] mb-16 md:mb-20">
-            <p className="eyebrow text-gold mb-5">The Ecosystem</p>
-            <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
-              Beyond the single treatment.
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
-            {ECOSYSTEM.map((item, i) => (
-              <Link
-                key={item.tag}
-                to={item.to}
-                className="group relative flex flex-col justify-between p-10 md:p-12 aspect-[3/4] bg-stone-50 hover:bg-stone-50 transition-colors overflow-hidden"
-              >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-b from-transparent to-stone-100" />
-                <div className="relative">
-                  <p className="serif-display text-gold text-2xl mb-8">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <p className="eyebrow text-stone-500 mb-4">{item.tag}</p>
-                  <h3 className="serif-display text-3xl md:text-4xl text-stone-900 mb-5 text-balance">
-                    {item.h}
-                  </h3>
-                  <p className="text-sm text-stone-700 leading-relaxed max-w-[32ch]">{item.p}</p>
-                </div>
-                <span className="relative text-xs tracking-[0.2em] uppercase text-forest inline-flex items-center gap-3 mt-10">
-                  Discover
-                  <span className="h-px w-8 bg-gold transition-all group-hover:w-12" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Wellness Shop teaser strip */}
-      <section className="bg-stone-50 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 aspect-[5/4] overflow-hidden rounded-sm">
-            <img
-              src={shopImg}
-              alt="A curated selection of therapist-chosen wellness oils and tools"
-              loading="lazy"
-              width={1200}
-              height={1000}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="lg:col-span-6 lg:pl-8">
-            <p className="eyebrow text-gold mb-5">Coming soon</p>
-            <h2 className="serif-display text-3xl md:text-5xl text-stone-900 mb-6 text-balance">
-              A small, considered wellness shop.
-            </h2>
-            <p className="text-stone-700 leading-relaxed max-w-[46ch]">
-              Oils, tools and quiet rituals — chosen by our therapists, made by makers we respect,
-              designed to extend the treatment between visits.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* THERAPIST PREVIEW — max 3 */}
-      <section className="bg-stone-50 py-28 md:py-40">
+      {/* 5. THERAPIST PREVIEW — human faces, directly after the journey */}
+      <section className="bg-stone-100 py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-20">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
               <div className="max-w-[46ch]">
                 <p className="eyebrow text-gold mb-5">The Practitioners</p>
                 <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
@@ -506,7 +343,7 @@ function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {THERAPISTS.slice(0, 3).map((t, i) => (
               <Reveal key={t.slug} delay={i * 120}>
-                <article className="group bg-stone-50">
+                <article className="group">
                   <Link
                     to="/therapists/$slug"
                     params={{ slug: t.slug }}
@@ -572,11 +409,11 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CLIENT REVIEWS */}
-      <section className="bg-stone-100 py-28 md:py-40 overflow-hidden">
+      {/* 6. CLIENT REVIEWS — social proof right after the faces */}
+      <section className="bg-stone-50 py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
-            <div className="max-w-[46ch] mb-16 md:mb-20">
+            <div className="max-w-[46ch] mb-14 md:mb-20">
               <p className="eyebrow text-gold mb-5">In Their Words</p>
               <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
                 A quiet standard, felt in every visit.
@@ -584,10 +421,10 @@ function HomePage() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
             {REVIEWS.slice(0, 3).map((r, i) => (
               <Reveal key={r.id} delay={i * 120}>
-                <figure className="h-full bg-stone-50 p-8 md:p-10 flex flex-col">
+                <figure className="h-full flex flex-col border-t border-stone-200 pt-8">
                   <StarRating value={r.rating} size={16} />
                   <blockquote className="serif-display text-xl md:text-2xl text-stone-900 leading-snug mt-5 mb-8 flex-1 text-balance">
                     “{r.body}”
@@ -624,13 +461,134 @@ function HomePage() {
         </div>
       </section>
 
-      {/* JOIN OUR TEAM PREVIEW */}
-      <section className="bg-stone-50 py-28 md:py-40">
+      {/* 7. FOUNDER STORY */}
+      <section className="bg-stone-100 py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div className="lg:col-span-5 relative aspect-[4/5] overflow-hidden rounded-sm">
+            <img
+              src={therapistImg}
+              alt="A portrait of Lythe's founding therapist"
+              loading="lazy"
+              width={1000}
+              height={1250}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="lg:col-span-7 lg:pl-8">
+            <p className="eyebrow text-gold mb-5">Our Story</p>
+            <h2 className="serif-display text-4xl md:text-5xl text-stone-900 mb-7 text-balance">
+              Inspired by Filipino hospitality. Designed for modern London wellness.
+            </h2>
+            <p className="text-base md:text-lg text-stone-700 leading-relaxed max-w-[52ch]">
+              Lythe was founded on a simple belief — that care, when offered with real warmth and
+              real skill, is one of the last great luxuries. We built a collective of London
+              therapists to bring that quiet standard into the home, the suite and the office.
+            </p>
+            <p className="mt-5 text-stone-700 leading-relaxed max-w-[52ch]">
+              No spa lobby. No hurry. Only the treatment, exactly as it should be.
+            </p>
+            <Link
+              to="/about"
+              className="mt-9 inline-flex items-center gap-3 text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
+            >
+              Read the full story
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. THE JOURNAL — magazine style */}
+      <section className="bg-stone-50 py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
+            <div className="max-w-[46ch]">
+              <p className="eyebrow text-gold mb-5">The Journal</p>
+              <h2 className="serif-display text-4xl md:text-6xl text-stone-900 text-balance">
+                Field notes from our practice.
+              </h2>
+            </div>
+            <Link
+              to="/knowledge"
+              className="text-sm font-medium text-stone-900 border-b border-stone-900/40 pb-1 hover:border-gold hover:text-gold transition whitespace-nowrap"
+            >
+              Read the journal →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            {/* Lead article */}
+            <Link to="/knowledge" className="group lg:col-span-7 block">
+              <div className="relative aspect-[16/10] overflow-hidden mb-8 bg-stone-200">
+                <img
+                  src={serviceHome}
+                  alt="Journal lead"
+                  loading="lazy"
+                  width={1400}
+                  height={900}
+                  className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
+                />
+              </div>
+              <p className="eyebrow text-gold mb-3">{JOURNAL[0].tag}</p>
+              <h3 className="serif-display text-3xl md:text-4xl text-stone-900 mb-4 text-balance max-w-[24ch]">
+                {JOURNAL[0].h}
+              </h3>
+              <p className="text-stone-700 leading-relaxed max-w-[52ch]">{JOURNAL[0].p}</p>
+            </Link>
+
+            <div className="lg:col-span-5 flex flex-col divide-y divide-stone-200">
+              {JOURNAL.slice(1).map((a) => (
+                <Link key={a.h} to="/knowledge" className="group py-8 first:pt-0 last:pb-0 block">
+                  <p className="eyebrow text-gold mb-3">{a.tag}</p>
+                  <h4 className="serif-display text-2xl md:text-3xl text-stone-900 mb-3 group-hover:text-forest transition-colors">
+                    {a.h}
+                  </h4>
+                  <p className="text-sm text-stone-700 leading-relaxed">{a.p}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. ECOSYSTEM — Membership / Gift / Shop, visually reduced to a quiet index */}
+      <section className="bg-stone-100 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[46ch] mb-12 md:mb-16">
+            <p className="eyebrow text-gold mb-5">The Ecosystem</p>
+            <h2 className="serif-display text-3xl md:text-4xl text-stone-900 text-balance">
+              Beyond the single treatment.
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 border-t border-stone-200">
+            {ECOSYSTEM.map((item) => (
+              <Link
+                key={item.tag}
+                to={item.to}
+                className="group py-9 border-b md:border-b-0 border-stone-200/80 md:pr-6"
+              >
+                <p className="eyebrow text-stone-500 mb-4">{item.tag}</p>
+                <h3 className="serif-display text-2xl md:text-3xl text-stone-900 mb-3 text-balance group-hover:text-forest transition-colors">
+                  {item.h}
+                </h3>
+                <p className="text-sm text-stone-700 leading-relaxed max-w-[34ch]">{item.p}</p>
+                <span className="mt-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-forest">
+                  Discover
+                  <span className="h-px w-8 bg-gold transition-all group-hover:w-12" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. JOIN OUR TEAM PREVIEW */}
+      <section className="bg-stone-50 py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           <Reveal className="lg:col-span-6 relative aspect-[5/4] overflow-hidden rounded-sm">
             <img
-              src={therapistImg}
-              alt="A Lythe therapist preparing for a visit"
+              src={serviceCorporate}
+              alt="A Lythe therapist preparing a treatment for a client"
               loading="lazy"
               width={1200}
               height={1000}
@@ -645,27 +603,20 @@ function HomePage() {
             <p className="text-stone-700 leading-relaxed max-w-[46ch]">
               Flexible work, professional support, and a trusted London wellness brand behind you.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                to="/join-therapist"
-                className="bg-stone-900 text-stone-50 px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-forest transition"
-              >
-                Apply in 2 Minutes
-              </Link>
-              <Link
-                to="/join-therapist"
-                className="text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
-              >
-                Explore therapist benefits →
-              </Link>
-            </div>
+            <Link
+              to="/join-therapist"
+              className="mt-9 inline-flex items-center gap-3 text-sm font-medium text-forest border-b border-forest/40 pb-1 hover:border-gold hover:text-gold transition"
+            >
+              Apply in 2 minutes
+              <span aria-hidden>→</span>
+            </Link>
           </Reveal>
         </div>
       </section>
 
-
+      {/* 11. FINAL CTA */}
       <section className="bg-forest text-stone-100">
-        <div className="max-w-7xl mx-auto px-6 py-32 md:py-48 text-center">
+        <div className="max-w-7xl mx-auto px-6 py-28 md:py-40 text-center">
           <p className="eyebrow text-gold-soft mb-8 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-gold-soft" />
             Book Today
@@ -674,19 +625,19 @@ function HomePage() {
           <h2 className="serif-display text-5xl md:text-7xl lg:text-8xl text-stone-50 max-w-[16ch] mx-auto text-balance">
             The treatment, brought to you.
           </h2>
-          <p className="mt-10 max-w-[48ch] mx-auto text-stone-300 leading-relaxed text-lg">
-            London's most considered mobile wellness collective is a single tap away.
+          <p className="mt-9 max-w-[48ch] mx-auto text-stone-300 leading-relaxed text-lg">
+            London&apos;s most considered mobile wellness collective is a single tap away.
           </p>
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <div className="mt-11 flex flex-col sm:flex-row sm:justify-center items-center gap-6">
             <Link
               to="/booking"
-              className="bg-stone-50 text-stone-900 px-10 py-5 rounded-full text-sm font-medium hover:bg-gold hover:text-stone-50 transition"
+              className="inline-flex items-center justify-center bg-stone-50 text-stone-900 px-10 py-[1.15rem] rounded-full text-[0.9375rem] font-semibold tracking-wide shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)] hover:bg-gold hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-forest transition"
             >
-              Book a Treatment
+              Book Now
             </Link>
             <Link
               to="/membership"
-              className="text-sm font-medium text-stone-50 border-b border-stone-50/60 pb-1 hover:border-gold hover:text-gold-soft transition self-center"
+              className="text-sm font-medium text-stone-50/90 border-b border-stone-50/40 pb-1 hover:border-gold hover:text-gold-soft transition"
             >
               Explore membership →
             </Link>
