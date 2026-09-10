@@ -40,7 +40,7 @@ function TreatmentsPage() {
       {/* Intro */}
       <Section
         eyebrow="The Curated Menu"
-        title="Treatments, refined."
+        title="Treatments, refined." titleTag="h1"
         intro="Every treatment is a bespoke conversation between therapist and body. Choose the ritual that meets you where you are today."
       >
         {/* Category anchor nav */}

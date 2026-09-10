@@ -24,7 +24,7 @@ function CorporatePage() {
     <SiteLayout>
       <Section
         eyebrow="Corporate Wellness"
-        title="Performance, in every posture."
+        title="Performance, in every posture." titleTag="h1"
         intro="On-site chair massage, event wellness suites and continuous programmes designed around the modern workplace."
       >
         <div className="grid md:grid-cols-3 gap-8">

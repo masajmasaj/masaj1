@@ -296,8 +296,8 @@ function BookingPage() {
                             <p className="font-serif text-base text-stone-900 truncate">
                               {t.name.split(" ")[0]}
                             </p>
-                            {t.verified && (
-                              <span className="text-[10px] text-forest" title="Verified">✓</span>
+                            {t.verified && ( <span className="sr-only">Verified</span>
+                              <span className="text-[10px] text-forest" title="Verified" aria-hidden="true">✓</span>
                             )}
                           </div>
                           <p className="text-xs text-stone-500 truncate">{t.specialities.slice(0, 2).join(" · ")}</p>

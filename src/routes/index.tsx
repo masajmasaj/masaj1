@@ -366,7 +366,7 @@ function HomePage() {
                         title="Verified"
                         className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-forest text-stone-50 text-[10px]"
                       >
-                        ✓
+                         <svg className="size-3 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" /></svg>
                       </span>
                     )}
                   </div>
