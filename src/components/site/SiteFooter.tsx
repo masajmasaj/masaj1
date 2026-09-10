@@ -3,7 +3,7 @@ import { BRAND, FOOTER_NAV } from "@/lib/site-config";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-stone-900 text-stone-200 py-24 mt-24">
+    <footer className="bg-stone-900 text-stone-200 py-20 md:py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
           <div>
@@ -42,12 +42,13 @@ export function SiteFooter() {
             >
               <input
                 type="email"
+                aria-label="Email address for the Wellness Journal"
                 placeholder="Your email"
-                className="bg-transparent px-4 py-2 text-sm outline-none flex-1 min-w-0 text-stone-50 placeholder:text-stone-500"
+                className="bg-transparent px-4 py-2 text-sm outline-none flex-1 min-w-0 text-stone-50 placeholder:text-stone-500 focus-visible:ring-2 focus-visible:ring-gold rounded-full"
               />
               <button
                 type="submit"
-                className="bg-stone-50 text-stone-900 px-5 py-2 rounded-full text-xs font-medium hover:bg-gold hover:text-stone-50 transition-colors"
+                className="bg-stone-50 text-stone-900 px-5 py-2 rounded-full text-xs font-medium hover:bg-gold hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold transition-colors"
               >
                 Join
               </button>
