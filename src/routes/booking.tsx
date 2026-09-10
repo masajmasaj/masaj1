@@ -297,7 +297,26 @@ function BookingPage() {
                               {t.name.split(" ")[0]}
                             </p>
                             {t.verified && (
-                              <span className="text-[10px] text-forest" title="Verified">✓</span>
+                              <span
+                                className="inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-wider text-forest"
+                                title="Verified therapist"
+                              >
+                                <svg
+                                  className="size-3"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"
+                                  />
+                                </svg>
+                                <span className="sr-only">Verified therapist</span>
+                              </span>
                             )}
                           </div>
                           <p className="text-xs text-stone-500 truncate">{t.specialities.slice(0, 2).join(" · ")}</p>

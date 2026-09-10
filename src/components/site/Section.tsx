@@ -9,10 +9,10 @@ export function Section({
   children,
   tone = "light",
   className = "",
-  reveal = true,
+  reveal = true, titleTag = "h2"
 }: {
   eyebrow?: string;
-  title?: ReactNode;
+  title?: ReactNode; titleTag?: "h1" | "h2"
   intro?: string;
   action?: ReactNode;
   children?: ReactNode;
@@ -22,6 +22,7 @@ export function Section({
 }) {
   const bg =
     tone === "warm" ? "bg-stone-100" : tone === "dark" ? "bg-forest text-stone-100" : "bg-stone-50";
+  const Tag = titleTag;
   const hasHeader = Boolean(eyebrow || title || intro || action);
 
   const header = hasHeader ? (
@@ -32,7 +33,7 @@ export function Section({
             {eyebrow}
           </p>
         )}
-        {title && <h2 className="text-4xl md:text-5xl serif-display text-balance">{title}</h2>}
+        {title && <Tag className="text-4xl md:text-5xl serif-display text-balance">{title}</Tag>}
         {intro && (
           <p
             className={`mt-4 text-pretty leading-relaxed ${

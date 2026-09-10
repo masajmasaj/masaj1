@@ -366,7 +366,7 @@ function HomePage() {
                         title="Verified"
                         className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-forest text-stone-50 text-[10px]"
                       >
-                        ✓
+                         <svg className="size-3 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" /></svg>
                       </span>
                     )}
                   </div>
@@ -384,9 +384,12 @@ function HomePage() {
                     <span className="text-stone-300">·</span>
                     <span>{t.languages.slice(0, 2).join(", ")}</span>
                   </div>
-                  <p className="text-xs text-stone-500 mb-5">
-                    Next available <span className="text-stone-800">{t.nextAvailable}</span>
-                  </p>
+                  <div className="mb-5 flex items-center justify-between gap-4 text-xs text-stone-500">
+                    <p>
+                      Next available <span className="text-stone-800">{t.nextAvailable}</span>
+                    </p>
+                    <p className="shrink-0 font-medium text-forest">From £{t.priceFrom}</p>
+                  </div>
                   <div className="flex items-center gap-5 text-sm">
                     <Link
                       to="/booking"
@@ -509,7 +512,7 @@ function HomePage() {
               </h2>
             </div>
             <Link
-              to="/knowledge"
+                to="/journal"
               className="text-sm font-medium text-stone-900 border-b border-stone-900/40 pb-1 hover:border-gold hover:text-gold transition whitespace-nowrap"
             >
               Read the journal →
@@ -518,7 +521,7 @@ function HomePage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Lead article */}
-            <Link to="/knowledge" className="group lg:col-span-7 block">
+            <Link to="/journal" className="group lg:col-span-7 block">
               <div className="relative aspect-[16/10] overflow-hidden mb-8 bg-stone-200">
                 <img
                   src={serviceHome}
@@ -538,7 +541,7 @@ function HomePage() {
 
             <div className="lg:col-span-5 flex flex-col divide-y divide-stone-200">
               {JOURNAL.slice(1).map((a) => (
-                <Link key={a.h} to="/knowledge" className="group py-8 first:pt-0 last:pb-0 block">
+                <Link key={a.h} to="/journal" className="group py-8 first:pt-0 last:pb-0 block">
                   <p className="eyebrow text-gold mb-3">{a.tag}</p>
                   <h4 className="serif-display text-2xl md:text-3xl text-stone-900 mb-3 group-hover:text-forest transition-colors">
                     {a.h}
